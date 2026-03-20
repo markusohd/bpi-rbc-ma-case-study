@@ -8,45 +8,53 @@
     /* ─── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy:   #0d2137;
-      --blue:   #1a4a7a;
-      --accent: #c8922a;
-      --gold:   #f0b429;
-      --light:  #f4f6f9;
-      --white:  #ffffff;
-      --text:   #1e2a38;
-      --muted:  #5a6a7e;
-      --border: #dde3ec;
-      --red:    #c0392b;
-      --green:  #1e7e4e;
+      /* BPI Brand Colors */
+      --bpi-red:      #BF0D23;
+      --bpi-red-dark: #8B0919;
+      --bpi-red-mid:  #D4172E;
+      --bpi-red-soft: #FDECEA;
+      --bpi-red-pale: #FFF5F5;
+
+      /* Supporting palette */
+      --gold:         #C8922A;
+      --gold-light:   #F5E6C8;
+      --dark:         #1A1A2E;
+      --dark-2:       #2C2C3E;
+      --white:        #FFFFFF;
+      --off-white:    #FAF9F9;
+      --light:        #F5F5F7;
+      --text:         #1A1A2E;
+      --muted:        #6B7280;
+      --border:       #E5E7EB;
+      --green:        #1A7A4A;
+      --green-bg:     #E8F5EE;
     }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background: var(--light);
       color: var(--text);
-      line-height: 1.75;
+      line-height: 1.8;
       font-size: 16px;
     }
 
     /* ─── Scrollbar ─────────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--light); }
-    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: var(--bpi-red); border-radius: 4px; }
 
     /* ─── Top Bar ───────────────────────────────────────────────── */
     .topbar {
-      background: var(--navy);
-      color: rgba(255,255,255,.65);
-      font-size: .78rem;
-      letter-spacing: .05em;
+      background: var(--bpi-red-dark);
+      color: rgba(255,255,255,.75);
+      font-size: .75rem;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      padding: .45rem 2rem;
+      padding: .5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .topbar span { display: flex; align-items: center; gap: .5rem; }
 
     /* ─── Navigation ────────────────────────────────────────────── */
     nav {
@@ -54,13 +62,13 @@
       top: 0;
       z-index: 100;
       background: var(--white);
-      border-bottom: 3px solid var(--accent);
-      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      border-bottom: 3px solid var(--bpi-red);
+      box-shadow: 0 2px 16px rgba(0,0,0,.1);
     }
     .nav-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: .75rem 2rem;
+      padding: .7rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -68,37 +76,45 @@
       flex-wrap: wrap;
     }
     .nav-brand {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--navy);
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--bpi-red);
       text-decoration: none;
       letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
     }
-    .nav-brand span { color: var(--accent); }
+    .nav-brand::before {
+      content: '';
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--bpi-red);
+    }
     .nav-links {
       display: flex;
-      gap: .15rem;
+      gap: .1rem;
       flex-wrap: wrap;
       list-style: none;
     }
     .nav-links a {
       display: block;
-      padding: .45rem .85rem;
-      font-size: .82rem;
+      padding: .4rem .8rem;
+      font-size: .8rem;
       font-weight: 600;
       color: var(--muted);
       text-decoration: none;
       border-radius: 6px;
       transition: all .2s;
-      letter-spacing: .01em;
     }
-    .nav-links a:hover { background: var(--light); color: var(--navy); }
+    .nav-links a:hover { background: var(--bpi-red-soft); color: var(--bpi-red); }
 
     /* ─── Hero ──────────────────────────────────────────────────── */
     .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1e5fa8 100%);
+      background: linear-gradient(135deg, var(--bpi-red-dark) 0%, var(--bpi-red) 55%, #E8233B 100%);
       color: var(--white);
-      padding: 5rem 2rem 4rem;
+      padding: 5.5rem 2rem 4.5rem;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -107,47 +123,61 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M40 40m-20 0a20,20 0 1,1 40,0a20,20 0 1,1-40,0'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: var(--light);
+      clip-path: ellipse(55% 100% at 50% 100%);
     }
     .hero-tag {
       display: inline-block;
-      background: rgba(200,146,42,.25);
-      border: 1px solid var(--gold);
-      color: var(--gold);
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      color: var(--white);
       font-size: .75rem;
       font-weight: 700;
       letter-spacing: .12em;
       text-transform: uppercase;
-      padding: .35rem 1rem;
+      padding: .4rem 1.1rem;
       border-radius: 20px;
       margin-bottom: 1.5rem;
     }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.12;
       letter-spacing: -.03em;
-      margin-bottom: 1rem;
+      margin-bottom: 1.1rem;
     }
     .hero h1 em {
       font-style: normal;
-      color: var(--gold);
+      background: linear-gradient(90deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .hero p {
-      font-size: 1.15rem;
-      opacity: .85;
-      max-width: 640px;
+    .hero-sub {
+      font-size: 1.1rem;
+      opacity: .9;
+      max-width: 680px;
       margin: 0 auto 2rem;
+      line-height: 1.7;
     }
     .hero-badges {
       display: flex;
       gap: .75rem;
       justify-content: center;
       flex-wrap: wrap;
+      padding-bottom: 2.5rem;
     }
     .badge {
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.3);
       color: var(--white);
       padding: .4rem 1rem;
       border-radius: 20px;
@@ -155,78 +185,189 @@
       font-weight: 600;
     }
 
-    /* ─── Overview Cards ────────────────────────────────────────── */
-    .overview {
+    /* ─── Stats Bar ─────────────────────────────────────────────── */
+    .stats-bar {
       background: var(--white);
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,.06);
     }
-    .overview-inner {
+    .stats-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 3rem 2rem;
+      padding: 0 2rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
     }
-    .stat-card {
+    .stat-item {
+      padding: 1.5rem 1rem;
       text-align: center;
-      padding: 1.75rem 1.25rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--light);
-      transition: box-shadow .2s, transform .2s;
+      border-right: 1px solid var(--border);
+      transition: background .2s;
     }
-    .stat-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: translateY(-3px); }
-    .stat-card .stat-icon { font-size: 2rem; margin-bottom: .5rem; }
-    .stat-card .stat-value {
-      font-size: 1.65rem;
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: var(--bpi-red-pale); }
+    .stat-value {
+      font-size: 1.5rem;
       font-weight: 900;
-      color: var(--navy);
+      color: var(--bpi-red);
       letter-spacing: -.03em;
       line-height: 1.1;
     }
-    .stat-card .stat-label {
-      font-size: .8rem;
+    .stat-label {
+      font-size: .72rem;
       color: var(--muted);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: .06em;
-      margin-top: .4rem;
+      margin-top: .35rem;
+    }
+
+    /* ─── Intro Narrative ───────────────────────────────────────── */
+    .intro-section {
+      background: var(--light);
+      padding: 4rem 2rem;
+    }
+    .intro-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .intro-inner h2 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--dark);
+      letter-spacing: -.03em;
+      margin-bottom: 1rem;
+    }
+    .intro-inner h2 span { color: var(--bpi-red); }
+    .intro-inner p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .industry-context {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .context-pill {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--bpi-red);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: left;
+    }
+    .context-pill .cp-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--bpi-red);
+      margin-bottom: .35rem;
+    }
+    .context-pill .cp-text {
+      font-size: .88rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
     }
 
     /* ─── Section Shared ────────────────────────────────────────── */
-    section { padding: 5rem 2rem; }
-    section:nth-child(even) { background: var(--white); }
+    .section-light { background: var(--light); padding: 5rem 2rem; }
+    .section-white { background: var(--white); padding: 5rem 2rem; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
+
     .section-header { margin-bottom: 3rem; }
     .section-number {
-      display: inline-block;
-      font-size: .75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .72rem;
       font-weight: 800;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--bpi-red);
       margin-bottom: .5rem;
+    }
+    .section-number::before {
+      content: '';
+      display: inline-block;
+      width: 18px; height: 2px;
+      background: var(--bpi-red);
     }
     .section-header h2 {
       font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 900;
-      color: var(--navy);
+      color: var(--dark);
       letter-spacing: -.03em;
       line-height: 1.2;
     }
     .section-header p {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--muted);
       margin-top: .6rem;
-      max-width: 700px;
+      max-width: 720px;
+      line-height: 1.8;
     }
     .divider {
-      width: 52px;
+      width: 48px;
       height: 4px;
-      background: var(--accent);
+      background: var(--bpi-red);
       border-radius: 2px;
       margin: .75rem 0 1rem;
+    }
+
+    /* ─── Narrative Block ───────────────────────────────────────── */
+    .narrative {
+      background: var(--bpi-red-pale);
+      border-left: 4px solid var(--bpi-red);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      font-size: .97rem;
+      color: var(--text);
+      line-height: 1.85;
+    }
+    .narrative strong { color: var(--bpi-red-dark); }
+
+    /* ─── Quote Block ───────────────────────────────────────────── */
+    .quote-block {
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 2rem 2.25rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .quote-block::before {
+      content: '\201C';
+      font-size: 5rem;
+      color: var(--bpi-red);
+      line-height: .5;
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      font-family: Georgia, serif;
+    }
+    .quote-block blockquote {
+      font-size: 1.08rem;
+      font-style: italic;
+      opacity: .9;
+      padding-left: 2.5rem;
+      line-height: 1.75;
+    }
+    .quote-block cite {
+      display: block;
+      font-size: .82rem;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: .75rem;
+      padding-left: 2.5rem;
     }
 
     /* ─── Bank Profile Cards ─────────────────────────────────────── */
@@ -234,41 +375,42 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
-      margin-top: 1rem;
     }
     .bank-card {
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
       background: var(--white);
-      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      box-shadow: 0 4px 16px rgba(0,0,0,.06);
+      transition: transform .2s, box-shadow .2s;
     }
+    .bank-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
     .bank-card-header {
-      padding: 1.5rem 2rem;
+      padding: 1.6rem 2rem;
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-    .bank-card-header.acquirer { background: linear-gradient(135deg, var(--navy), var(--blue)); color: var(--white); }
-    .bank-card-header.target   { background: linear-gradient(135deg, #7b2d00, #c0392b); color: var(--white); }
+    .bank-card-header.acquirer { background: linear-gradient(135deg, var(--bpi-red-dark), var(--bpi-red)); color: var(--white); }
+    .bank-card-header.target   { background: linear-gradient(135deg, #1a1a2e, #2d2d50); color: var(--white); }
     .bank-logo-circle {
-      width: 56px; height: 56px;
+      width: 54px; height: 54px;
       border-radius: 50%;
-      background: rgba(255,255,255,.2);
+      background: rgba(255,255,255,.18);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       flex-shrink: 0;
     }
-    .bank-card-header h3 { font-size: 1.1rem; font-weight: 800; }
-    .bank-card-header .role-tag {
+    .bank-card-header h3 { font-size: 1.05rem; font-weight: 800; }
+    .role-tag {
       display: inline-block;
       background: rgba(255,255,255,.2);
       border-radius: 4px;
-      font-size: .7rem;
+      font-size: .68rem;
       font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
-      padding: .2rem .5rem;
+      padding: .2rem .55rem;
       margin-top: .25rem;
     }
     .bank-card-body { padding: 1.5rem 2rem; }
@@ -278,27 +420,16 @@
       align-items: baseline;
       padding: .6rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: .92rem;
+      font-size: .9rem;
     }
     .bank-stat-row:last-child { border-bottom: none; }
-    .bank-stat-row .label { color: var(--muted); font-weight: 500; }
-    .bank-stat-row .val { font-weight: 700; color: var(--navy); text-align: right; }
+    .bank-stat-row .lbl { color: var(--muted); font-weight: 500; }
+    .bank-stat-row .val { font-weight: 700; color: var(--dark); text-align: right; max-width: 55%; }
 
-    /* ─── Topic Sections ─────────────────────────────────────────── */
-    .topic-icon {
-      width: 52px; height: 52px;
-      border-radius: 12px;
-      background: var(--navy);
-      color: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 1.25rem;
-    }
-
-    /* Cards grid */
+    /* ─── Cards Grid ────────────────────────────────────────────── */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 1.5rem;
     }
     .info-card {
@@ -309,20 +440,21 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.04);
       transition: box-shadow .2s, transform .2s;
     }
-    .info-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.09); transform: translateY(-3px); }
-    .info-card.highlight { border-left: 4px solid var(--accent); }
+    .info-card:hover { box-shadow: 0 10px 28px rgba(0,0,0,.09); transform: translateY(-3px); }
+    .info-card.hl { border-top: 3px solid var(--bpi-red); }
     .info-card h4 {
       font-size: 1rem;
       font-weight: 800;
-      color: var(--navy);
+      color: var(--dark);
       margin-bottom: .5rem;
+      line-height: 1.3;
     }
-    .info-card p { font-size: .9rem; color: var(--muted); }
+    .info-card p { font-size: .9rem; color: var(--muted); line-height: 1.75; }
     .card-tag {
       display: inline-block;
-      background: rgba(200,146,42,.12);
-      color: var(--accent);
-      font-size: .72rem;
+      background: var(--bpi-red-soft);
+      color: var(--bpi-red);
+      font-size: .7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .07em;
@@ -331,103 +463,91 @@
       margin-bottom: .75rem;
     }
 
-    /* Tables */
-    .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid var(--border); }
-    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-    thead { background: var(--navy); color: var(--white); }
-    thead th { padding: .85rem 1.1rem; text-align: left; font-weight: 700; letter-spacing: .03em; font-size: .82rem; text-transform: uppercase; }
+    /* ─── Tables ─────────────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); margin: 1.5rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    thead { background: var(--dark); color: var(--white); }
+    thead th { padding: .9rem 1.1rem; text-align: left; font-weight: 700; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; }
     tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
     tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: #f0f4f9; }
+    tbody tr:hover { background: var(--bpi-red-pale); }
     tbody td { padding: .85rem 1.1rem; vertical-align: top; }
-    tbody td:first-child { font-weight: 600; color: var(--navy); }
+    tbody td:first-child { font-weight: 600; color: var(--dark); }
     .tag-green { color: var(--green); font-weight: 700; }
-    .tag-red   { color: var(--red);   font-weight: 700; }
-    .tag-blue  { color: var(--blue);  font-weight: 700; }
+    .tag-red   { color: var(--bpi-red); font-weight: 700; }
+    .tag-blue  { color: #1a4a7a; font-weight: 700; }
+    .tag-muted { color: var(--muted); font-weight: 600; }
 
-    /* Timeline */
+    /* ─── Timeline ──────────────────────────────────────────────── */
     .timeline { position: relative; padding-left: 2.5rem; }
     .timeline::before {
       content: '';
       position: absolute;
-      left: 10px;
-      top: 0; bottom: 0;
+      left: 9px; top: 6px; bottom: 6px;
       width: 2px;
-      background: var(--border);
+      background: linear-gradient(to bottom, var(--bpi-red), var(--border));
     }
-    .tl-item {
-      position: relative;
-      margin-bottom: 2rem;
-    }
-    .tl-item::before {
-      content: '';
+    .tl-item { position: relative; margin-bottom: 2.25rem; }
+    .tl-dot {
       position: absolute;
-      left: -2.1rem;
-      top: .45rem;
-      width: 14px; height: 14px;
+      left: -2.1rem; top: .3rem;
+      width: 16px; height: 16px;
       border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--white);
-      box-shadow: 0 0 0 2px var(--accent);
+      background: var(--bpi-red);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--bpi-red);
     }
     .tl-date {
-      font-size: .75rem;
+      font-size: .73rem;
       font-weight: 800;
-      color: var(--accent);
-      letter-spacing: .06em;
+      color: var(--bpi-red);
+      letter-spacing: .07em;
       text-transform: uppercase;
       margin-bottom: .25rem;
     }
-    .tl-title {
-      font-weight: 700;
-      color: var(--navy);
-      font-size: .97rem;
-      margin-bottom: .2rem;
-    }
-    .tl-body { font-size: .88rem; color: var(--muted); }
+    .tl-title { font-weight: 800; color: var(--dark); font-size: .97rem; margin-bottom: .3rem; }
+    .tl-body { font-size: .88rem; color: var(--muted); line-height: 1.7; }
 
-    /* Highlight box */
+    /* ─── Callout Boxes ─────────────────────────────────────────── */
     .callout {
-      background: linear-gradient(135deg, #eef4ff, #f5f0e8);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--blue);
       border-radius: 10px;
-      padding: 1.5rem 1.75rem;
-      margin: 2rem 0;
-      font-size: .95rem;
+      padding: 1.4rem 1.75rem;
+      margin: 1.5rem 0;
+      font-size: .94rem;
+      line-height: 1.8;
     }
-    .callout strong { color: var(--navy); }
-    .callout.accent-border { border-left-color: var(--accent); }
-    .callout.red-border   { border-left-color: var(--red); }
-    .callout.green-border { border-left-color: var(--green); }
+    .callout-red   { background: var(--bpi-red-soft); border-left: 4px solid var(--bpi-red); }
+    .callout-dark  { background: #F0F0F5; border-left: 4px solid var(--dark); }
+    .callout-gold  { background: var(--gold-light); border-left: 4px solid var(--gold); }
+    .callout-green { background: var(--green-bg); border-left: 4px solid var(--green); }
+    .callout strong { font-weight: 800; }
+    .callout-red strong { color: var(--bpi-red-dark); }
+    .callout-dark strong { color: var(--dark); }
 
-    /* Two-col layout */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
+    /* ─── Two-col ───────────────────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
     @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
 
-    /* List styled */
+    /* ─── Styled List ───────────────────────────────────────────── */
     .styled-list { list-style: none; padding: 0; }
     .styled-list li {
       padding: .65rem .75rem .65rem 2rem;
       position: relative;
       border-bottom: 1px solid var(--border);
-      font-size: .92rem;
+      font-size: .91rem;
+      line-height: 1.65;
     }
     .styled-list li:last-child { border-bottom: none; }
     .styled-list li::before {
       content: '▸';
       position: absolute;
       left: .5rem;
-      color: var(--accent);
+      color: var(--bpi-red);
       font-size: .8rem;
+      top: .75rem;
     }
 
-    /* Regulator badges */
+    /* ─── Regulator Cards ───────────────────────────────────────── */
     .reg-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -436,77 +556,96 @@
     .reg-card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border-radius: 14px;
+      padding: 1.75rem;
       text-align: center;
       box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s;
     }
-    .reg-card .reg-icon { font-size: 2rem; margin-bottom: .75rem; }
-    .reg-card h4 { font-size: .9rem; font-weight: 800; color: var(--navy); margin-bottom: .35rem; }
-    .reg-card p { font-size: .8rem; color: var(--muted); }
-    .reg-card .reg-date {
+    .reg-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+    .reg-card .reg-icon { font-size: 2.25rem; margin-bottom: .75rem; }
+    .reg-card h4 { font-size: .92rem; font-weight: 800; color: var(--dark); margin-bottom: .4rem; }
+    .reg-card p { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+    .reg-date {
       display: inline-block;
-      margin-top: .5rem;
-      background: var(--light);
-      border: 1px solid var(--border);
+      margin-top: .75rem;
+      background: var(--bpi-red-soft);
+      border: 1px solid rgba(191,13,35,.2);
       border-radius: 20px;
       font-size: .72rem;
       font-weight: 700;
-      padding: .2rem .65rem;
-      color: var(--navy);
+      padding: .25rem .75rem;
+      color: var(--bpi-red-dark);
     }
 
-    /* Synergy pillars */
+    /* ─── Synergy Pillars ───────────────────────────────────────── */
     .pillar-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
     }
     .pillar {
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--bpi-red-dark), var(--bpi-red));
       color: var(--white);
       border-radius: 14px;
       padding: 1.75rem 1.5rem;
       text-align: center;
+      transition: transform .2s;
     }
-    .pillar .p-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .pillar:hover { transform: translateY(-4px); }
+    .pillar .p-icon { font-size: 2.25rem; margin-bottom: .75rem; }
     .pillar h4 { font-size: .95rem; font-weight: 800; margin-bottom: .4rem; }
-    .pillar p { font-size: .82rem; opacity: .75; }
+    .pillar p { font-size: .82rem; opacity: .8; line-height: 1.6; }
 
-    /* ─── MBA Insights Box ──────────────────────────────────────── */
-    .insights {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
-      color: var(--white);
-      padding: 4rem 2rem;
+    /* ─── MBA Takeaways ─────────────────────────────────────────── */
+    /* NOTE: This section does NOT use the section tag to avoid nth-child override */
+    .insights-section {
+      background: linear-gradient(135deg, var(--dark) 0%, #2C1020 100%);
+      padding: 5rem 2rem;
     }
     .insights-inner { max-width: 1100px; margin: 0 auto; }
-    .insights h2 {
-      font-size: 2rem;
+    .insights-title {
+      font-size: clamp(1.6rem, 3vw, 2rem);
       font-weight: 900;
-      color: var(--gold);
-      margin-bottom: 2rem;
+      color: var(--white);
+      margin-bottom: .5rem;
       letter-spacing: -.03em;
+    }
+    .insights-title span { color: #FFD700; }
+    .insights-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 2.5rem;
+      max-width: 650px;
     }
     .insight-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.25rem;
     }
     .insight-card {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 1.5rem;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: background .2s, transform .2s;
     }
-    .insight-card .num {
-      font-size: 2rem;
+    .insight-card:hover { background: rgba(255,255,255,.1); transform: translateY(-3px); }
+    .insight-num {
+      font-size: 2.5rem;
       font-weight: 900;
-      color: var(--gold);
+      color: var(--bpi-red);
       line-height: 1;
       margin-bottom: .5rem;
+      font-variant-numeric: tabular-nums;
     }
-    .insight-card h4 { font-weight: 800; font-size: .97rem; margin-bottom: .4rem; }
-    .insight-card p { font-size: .85rem; opacity: .75; }
+    .insight-card h4 {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .insight-card p { font-size: .88rem; color: rgba(255,255,255,.65); line-height: 1.75; }
 
     /* ─── Glossary ───────────────────────────────────────────────── */
     .glossary-grid {
@@ -518,36 +657,54 @@
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      transition: border-color .2s;
     }
+    .glossary-item:hover { border-color: var(--bpi-red); }
     .glossary-item dt {
       font-weight: 800;
-      color: var(--navy);
+      color: var(--bpi-red);
       font-size: .95rem;
-      margin-bottom: .3rem;
+      margin-bottom: .35rem;
     }
-    .glossary-item dd { font-size: .87rem; color: var(--muted); }
+    .glossary-item dd { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── Sources ────────────────────────────────────────────────── */
+    .sources-section { background: var(--light); padding: 3rem 2rem; }
+    .sources-inner { max-width: 1100px; margin: 0 auto; }
+    .sources-inner h3 { font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem; }
+    .source-list { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .source-list li {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .35rem .85rem;
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
 
     /* ─── Footer ─────────────────────────────────────────────────── */
     footer {
-      background: var(--navy);
-      color: rgba(255,255,255,.6);
+      background: var(--bpi-red-dark);
+      color: rgba(255,255,255,.7);
       text-align: center;
       padding: 2.5rem 2rem;
       font-size: .82rem;
     }
-    footer strong { color: var(--white); }
+    footer strong { color: var(--white); font-size: .95rem; }
+    footer p + p { margin-top: .4rem; }
 
-    /* ─── Print / Responsive ─────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .hero { padding: 3.5rem 1.5rem 3rem; }
-      section { padding: 3.5rem 1.25rem; }
-      nav .nav-links { display: none; }
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .stats-inner { grid-template-columns: repeat(3, 1fr); }
+      .stat-item:nth-child(3) { border-right: none; }
     }
-    @media print {
-      nav, .topbar { display: none; }
-      section { padding: 2rem 0; }
-      .bank-card:hover, .info-card:hover, .stat-card:hover { transform: none; box-shadow: none; }
+    @media (max-width: 600px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      nav .nav-links { display: none; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
     }
   </style>
 </head>
@@ -555,22 +712,23 @@
 
 <!-- ── Top Bar ── -->
 <div class="topbar">
-  <span>📚 MBA Class Discussion Material — Mergers &amp; Acquisitions</span>
-  <span>Module D | BPI–Robinsons Bank Case Study</span>
+  <span>📚 MBA Class Discussion Material — Module D: Mergers &amp; Acquisitions</span>
+  <span>BPI–Robinsons Bank | Philippine Banking Case Study</span>
 </div>
 
 <!-- ── Navigation ── -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-brand" href="#hero">M<span>&</span>A <span>•</span> BPI–RBC</a>
+    <a class="nav-brand" href="#hero">BPI–RBC Merger Case Study</a>
     <ul class="nav-links">
-      <li><a href="#overview">Overview</a></li>
+      <li><a href="#overview">The Two Banks</a></li>
       <li><a href="#motives">M&amp;A Motives</a></li>
       <li><a href="#valuation">Valuation</a></li>
-      <li><a href="#deal">Deal Structuring</a></li>
+      <li><a href="#deal">Deal Structure</a></li>
       <li><a href="#diligence">Due Diligence</a></li>
       <li><a href="#integration">Integration</a></li>
       <li><a href="#legal">Legal &amp; Regulatory</a></li>
+      <li><a href="#insights">MBA Takeaways</a></li>
       <li><a href="#glossary">Glossary</a></li>
     </ul>
   </div>
@@ -579,62 +737,93 @@
 <!-- ── Hero ── -->
 <header class="hero" id="hero">
   <div class="hero-tag">Module D — Mergers &amp; Acquisitions</div>
-  <h1>BPI acquires <em>Robinsons Bank</em><br/>A Philippine Banking M&amp;A Case Study</h1>
-  <p>A comprehensive analysis of the Bank of the Philippine Islands–Robinsons Bank Corporation merger — covering all six key M&amp;A subtopics for MBA-level discussion.</p>
+  <h1>When the Ayalas met<br/>the <em>Gokongweis</em> at the<br/>negotiating table</h1>
+  <p class="hero-sub">
+    In October 2022, two of the Philippines' most storied business dynasties announced a landmark deal that would reshape the country's banking landscape. The Bank of the Philippine Islands — the oldest bank in Southeast Asia — agreed to absorb Robinsons Bank Corporation in a PHP 32 billion all-stock transaction that became effective January 1, 2024. This is that story.
+  </p>
   <div class="hero-badges">
     <span class="badge">💰 PHP 32 Billion Deal</span>
     <span class="badge">🏦 Effective January 1, 2024</span>
-    <span class="badge">🇵🇭 Philippine Banking Industry</span>
+    <span class="badge">🇵🇭 Philippine Banking</span>
     <span class="badge">📊 Horizontal Merger</span>
+    <span class="badge">🤝 Pure Stock Swap</span>
   </div>
 </header>
 
-<!-- ── Key Stats ── -->
-<div class="overview">
-  <div class="overview-inner">
-    <div class="stat-card">
-      <div class="stat-icon">💰</div>
+<!-- ── Stats Bar ── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
       <div class="stat-value">PHP 32B</div>
       <div class="stat-label">Total Deal Value</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon">📅</div>
-      <div class="stat-value">Jan 1, 2024</div>
-      <div class="stat-label">Merger Effectivity</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon">🏛️</div>
+    <div class="stat-item">
       <div class="stat-value">314M</div>
       <div class="stat-label">New BPI Shares Issued</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon">🏦</div>
+    <div class="stat-item">
       <div class="stat-value">PHP 2.8T</div>
-      <div class="stat-label">Combined Assets</div>
+      <div class="stat-label">Combined Total Assets</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon">🏢</div>
+    <div class="stat-item">
       <div class="stat-value">1,100+</div>
-      <div class="stat-label">Combined Branches &amp; Units</div>
+      <div class="stat-label">Combined Branches</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon">🥈</div>
+    <div class="stat-item">
+      <div class="stat-value">~1.6x</div>
+      <div class="stat-label">Price-to-Book Multiple</div>
+    </div>
+    <div class="stat-item">
       <div class="stat-value">2nd</div>
-      <div class="stat-label">Deposit Rank (Post-Merger)</div>
+      <div class="stat-label">BPI Deposit Rank (Post-Merger)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Intro Narrative ── -->
+<div class="intro-section">
+  <div class="intro-inner">
+    <h2>The deal that redrew Philippine <span>banking</span></h2>
+    <p>
+      The Philippine banking sector has long been dominated by a handful of giant universal banks — BDO Unibank, Metrobank, and BPI at the top — alongside a second tier of commercial banks fighting for market share. For decades, Robinsons Bank Corporation occupied a comfortable but constrained position in that second tier: well-capitalized, growing quickly, and deeply embedded within the Gokongwei Group's vast consumer ecosystem. But as BSP's regulatory environment demanded ever-larger capital buffers, and as digital banking disrupted traditional branch economics, the calculus for mid-sized banks began to shift.
+    </p>
+    <p>
+      On the other side of the table, BPI — the Ayala family's 173-year-old banking flagship — was sitting on a strategic gap. Its loan book was skewed toward corporate and commercial lending; consumer loans made up just 20% of its portfolio, far below where management wanted it. Its deposit ranking sat at third. And its digital banking ambitions were still maturing. The answer to both parties' needs was, as it turns out, each other.
+    </p>
+    <p>
+      What followed was a 15-month regulatory marathon — involving the Philippine Competition Commission, the Bangko Sentral ng Pilipinas, the PDIC, and the SEC — that ultimately cleared one of the most strategically significant bank mergers in Philippine history. This page walks through that entire journey through the six key M&amp;A subtopics.
+    </p>
+    <div class="industry-context">
+      <div class="context-pill">
+        <div class="cp-label">Philippine Banking Landscape</div>
+        <div class="cp-text">46 commercial &amp; universal banks; BDO, Metrobank &amp; BPI dominate the top 3 positions by assets</div>
+      </div>
+      <div class="context-pill">
+        <div class="cp-label">BSP Capital Policy</div>
+        <div class="cp-text">Rising capital adequacy requirements create scale pressures on mid-tier banks, incentivizing consolidation</div>
+      </div>
+      <div class="context-pill">
+        <div class="cp-label">Digital Banking Wave</div>
+        <div class="cp-text">6 BSP-licensed digital banks (including GoTyme) are disrupting traditional branch-heavy banking models</div>
+      </div>
+      <div class="context-pill">
+        <div class="cp-label">Conglomerate Dynamics</div>
+        <div class="cp-text">BPI (Ayala Group) + Robinsons Bank (JG Summit / Gokongwei Group) — a meeting of two of PH's most powerful business families</div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════
-     SECTION 0: Company Profiles
+     SECTION: The Two Banks
 ═══════════════════════════════════════════════════ -->
-<section id="overview" style="background: var(--light);">
+<div class="section-white" id="overview">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Background</div>
-      <h2>The Two Banks</h2>
+      <h2>The Two Banks: Who They Were</h2>
       <div class="divider"></div>
-      <p>Understanding the acquirer and target is foundational to analyzing any M&amp;A transaction.</p>
+      <p>Before analyzing any merger, it is critical to understand the identity, financial position, and strategic context of both the acquirer and the target. In the BPI–RBC deal, the contrast between the two banks is precisely what made the combination so compelling.</p>
     </div>
 
     <div class="banks-grid">
@@ -644,652 +833,753 @@
           <div class="bank-logo-circle">🏦</div>
           <div>
             <h3>Bank of the Philippine Islands (BPI)</h3>
-            <span class="role-tag">Acquirer / Surviving Entity</span>
+            <div class="role-tag">Acquirer · Surviving Entity</div>
           </div>
         </div>
         <div class="bank-card-body">
-          <div class="bank-stat-row"><span class="label">Founded</span><span class="val">1851 (oldest bank in SE Asia)</span></div>
-          <div class="bank-stat-row"><span class="label">Parent Group</span><span class="val">Ayala Corporation (Zobel de Ayala family)</span></div>
-          <div class="bank-stat-row"><span class="label">Classification</span><span class="val">Universal Bank (Unibank)</span></div>
-          <div class="bank-stat-row"><span class="label">Total Assets (2023)</span><span class="val">PHP 2.6 Trillion</span></div>
-          <div class="bank-stat-row"><span class="label">Industry Rank</span><span class="val">3rd largest by assets</span></div>
-          <div class="bank-stat-row"><span class="label">Consumer Loans (pre-merger)</span><span class="val">20% of loan book</span></div>
-          <div class="bank-stat-row"><span class="label">CASA Ratio</span><span class="val">~79%</span></div>
-          <div class="bank-stat-row"><span class="label">Strategic Goal</span><span class="val">Grow consumer loans to 30%</span></div>
+          <div class="bank-stat-row"><span class="lbl">Founded</span><span class="val">1851 — Oldest bank in Southeast Asia</span></div>
+          <div class="bank-stat-row"><span class="lbl">Parent Conglomerate</span><span class="val">Ayala Corporation (Zobel de Ayala family)</span></div>
+          <div class="bank-stat-row"><span class="lbl">Classification</span><span class="val">Universal Bank (Unibank)</span></div>
+          <div class="bank-stat-row"><span class="lbl">Total Assets (Pre-Merger)</span><span class="val">PHP 2.6 Trillion</span></div>
+          <div class="bank-stat-row"><span class="lbl">Industry Rank (Assets)</span><span class="val">3rd Largest in the Philippines</span></div>
+          <div class="bank-stat-row"><span class="lbl">Consumer Loans (Pre-Merger)</span><span class="val">20% of loan book</span></div>
+          <div class="bank-stat-row"><span class="lbl">CASA Ratio</span><span class="val">~79%</span></div>
+          <div class="bank-stat-row"><span class="lbl">HQ</span><span class="val">Makati City, Metro Manila</span></div>
+          <div class="bank-stat-row"><span class="lbl">Strategic Gap</span><span class="val">Under-indexed in consumer lending &amp; deposits</span></div>
         </div>
       </div>
+
       <!-- RBC -->
       <div class="bank-card">
         <div class="bank-card-header target">
           <div class="bank-logo-circle">🏛️</div>
           <div>
             <h3>Robinsons Bank Corporation (RBC)</h3>
-            <span class="role-tag">Target / Absorbed Entity</span>
+            <div class="role-tag">Target · Absorbed Entity</div>
           </div>
         </div>
         <div class="bank-card-body">
-          <div class="bank-stat-row"><span class="label">Founded</span><span class="val">1997 (commercial bank since 2010)</span></div>
-          <div class="bank-stat-row"><span class="label">Parent Group</span><span class="val">JG Summit Holdings (Gokongwei family)</span></div>
-          <div class="bank-stat-row"><span class="label">Classification</span><span class="val">Commercial Bank</span></div>
-          <div class="bank-stat-row"><span class="label">Total Assets (June 2022)</span><span class="val">PHP 175.9 Billion</span></div>
-          <div class="bank-stat-row"><span class="label">Industry Rank</span><span class="val">16th largest by assets</span></div>
-          <div class="bank-stat-row"><span class="label">Consumer Loans</span><span class="val">42% of loan book</span></div>
-          <div class="bank-stat-row"><span class="label">CASA Ratio</span><span class="val">83%</span></div>
-          <div class="bank-stat-row"><span class="label">Branch Network</span><span class="val">189 branches + 354 ATMs</span></div>
+          <div class="bank-stat-row"><span class="lbl">Founded</span><span class="val">1997 (Full commercial bank since 2010)</span></div>
+          <div class="bank-stat-row"><span class="lbl">Parent Conglomerate</span><span class="val">JG Summit Holdings (Gokongwei family)</span></div>
+          <div class="bank-stat-row"><span class="lbl">Classification</span><span class="val">Commercial Bank</span></div>
+          <div class="bank-stat-row"><span class="lbl">Total Assets (June 2022)</span><span class="val">PHP 175.9 Billion</span></div>
+          <div class="bank-stat-row"><span class="lbl">Industry Rank (Assets)</span><span class="val">16th Largest</span></div>
+          <div class="bank-stat-row"><span class="lbl">Consumer Loans</span><span class="val">42% of loan book</span></div>
+          <div class="bank-stat-row"><span class="lbl">CASA Ratio</span><span class="val">83% — Higher than BPI</span></div>
+          <div class="bank-stat-row"><span class="lbl">Branch Network</span><span class="val">189 branches + 354 ATMs</span></div>
+          <div class="bank-stat-row"><span class="lbl">Digital Asset</span><span class="val">20% stake in GoTyme Bank (BSP-licensed digital bank)</span></div>
         </div>
       </div>
     </div>
 
-    <div class="callout" style="margin-top:2rem;">
-      <strong>Key Ownership Structure of RBC before merger:</strong>
-      JG Summit Capital Services Corp. held <strong>59.99%</strong> and Robinsons Retail Holdings, Inc. (RRHI) held <strong>39.99%</strong> of RBC — both entities controlled by the Gokongwei family through JG Summit Holdings, Inc.
+    <div class="narrative" style="margin-top:2rem;">
+      <strong>The Ownership Structure of RBC:</strong> Robinsons Bank was not a publicly listed bank — it was entirely owned by two Gokongwei Group entities. JG Summit Capital Services Corp. (JGSCSC) held <strong>59.99%</strong>, and Robinsons Retail Holdings, Inc. (RRHI) — which is publicly listed on the PSE — held <strong>39.99%</strong>. This meant the merger required board and shareholder approvals from all these entities, not just BPI and RBC.
+    </div>
+
+    <div class="narrative" style="border-color: var(--gold); background: var(--gold-light);">
+      <strong>RBC's Growth Story (Roadmap 2020, 2014–2018):</strong> Far from a stagnant mid-tier bank, RBC had been one of the fastest-growing banks in the country. Under its internal "Roadmap 2020" strategy, total assets grew <strong>2.5x</strong> (26% CAGR), total loans grew <strong>3.1x</strong> (33% CAGR), and deposits grew <strong>2.4x</strong> (24% CAGR). It climbed from 26th to 16th in the industry rankings. This growth track record was a major factor in the premium BPI was willing to pay.
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      TOPIC 1: M&A MOTIVES
 ═══════════════════════════════════════════════════ -->
-<section id="motives">
+<div class="section-light" id="motives">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Topic 1 — M&amp;A Motives</div>
-      <h2>Why Did BPI Acquire Robinsons Bank?</h2>
+      <h2>Why Did These Two Banks Merge?</h2>
       <div class="divider"></div>
-      <p>M&amp;A motives can be financial, strategic, or synergistic. This deal combined all three for both the buyer and the seller.</p>
+      <p>M&amp;A transactions rarely happen for a single reason. They emerge from the intersection of strategic necessity, financial opportunity, and the right moment in time. The BPI–RBC merger is a rich example of multiple, mutually reinforcing motives on both sides of the table.</p>
     </div>
 
-    <h3 style="font-size:1.15rem; font-weight:800; color:var(--blue); margin-bottom:1rem;">BPI's Motives (Acquirer)</h3>
+    <div class="narrative">
+      The merger announcement on October 5, 2022 came as a surprise to many market observers — BPI had not been publicly rumored to be in acquisition talks, and RBC was seen as a quietly growing mid-tier bank with no obvious exit pressure. But behind the scenes, both sides had been circling a shared realization: that the combination of BPI's scale and RBC's consumer-focused franchise would create something neither could achieve alone, or at least not without years of effort.
+    </div>
+
+    <h3 style="font-size:1.1rem; font-weight:800; color:var(--bpi-red); margin: 2rem 0 1rem;">BPI's Motives — What the Acquirer Was Seeking</h3>
     <div class="cards-grid">
-      <div class="info-card highlight">
-        <div class="card-tag">Strategic</div>
-        <h4>Consumer Loan Portfolio Expansion</h4>
-        <p>RBC's consumer loans grew at <strong>30% CAGR</strong> over five years and represented <strong>42% of its loan book</strong> — more than double BPI's 20%. Acquiring RBC was BPI's fastest path to its target of 30% consumer loan composition.</p>
+      <div class="info-card hl">
+        <div class="card-tag">Strategic — Consumer Lending</div>
+        <h4>Bridging the Consumer Loan Gap</h4>
+        <p>BPI's loan portfolio was heavily concentrated in corporate and commercial lending. Consumer loans made up only <strong>20% of its total loan book</strong> — a figure management considered well below its strategic target of <strong>30%</strong>. RBC's consumer loan book, by contrast, represented <strong>42%</strong> of its total loans and had been compounding at a <strong>30% annual growth rate</strong> for five consecutive years. Rather than build this consumer franchise organically over a decade, BPI could acquire it in a single transaction.</p>
       </div>
-      <div class="info-card highlight">
-        <div class="card-tag">Market Share</div>
-        <h4>Deposit Market Share Leap</h4>
-        <p>The merger vaulted BPI's deposit ranking from <strong>3rd to 2nd</strong> in the Philippines — a competitive milestone that would have taken years of organic growth to achieve independently.</p>
+      <div class="info-card hl">
+        <div class="card-tag">Market Position — Deposits</div>
+        <h4>Leaping to 2nd in Deposit Rankings</h4>
+        <p>The Philippine deposit market is intensely competitive, with BDO Unibank and Metrobank holding the top two positions for years. BPI sat firmly at third. The merger was expected to vault BPI from <strong>3rd to 2nd place</strong> in total deposits — a competitive repositioning that would have required years of branch expansion and marketing investment to achieve organically. For a universal bank, deposit ranking is a proxy for funding cost, brand reach, and retail market dominance.</p>
       </div>
-      <div class="info-card highlight">
-        <div class="card-tag">Financial</div>
-        <h4>Revenue &amp; Earnings Accretion</h4>
-        <p>RBC was estimated to add <strong>~7% to BPI's revenues</strong> and <strong>5–6% to BPI's net income</strong> — meaningful accretion given BPI's size. Balance sheet metrics (assets, loans, deposits) were expected to expand by 6.5–7%.</p>
+      <div class="info-card hl">
+        <div class="card-tag">Financial — Accretion</div>
+        <h4>Immediate Revenue and Earnings Uplift</h4>
+        <p>BPI's financial projections showed that absorbing RBC would add approximately <strong>7% to its revenues</strong> and <strong>5–6% to its net income</strong> — meaningful accretion for a bank already generating significant profits. Balance sheet metrics were expected to grow by 6.5–7% across assets, loans, and deposits. These were not speculative synergies; they were baseline contributions from RBC's existing operations even before any integration value was realized.</p>
       </div>
-      <div class="info-card highlight">
-        <div class="card-tag">Digital</div>
-        <h4>GoTyme Digital Banking Foothold</h4>
-        <p>RBC held a <strong>20% stake in GoTyme Bank</strong>, one of only six BSP-licensed digital banks in the Philippines (co-owned with Singapore's Tyme Group). This gave BPI immediate entry into digital banking without building a new entity from scratch.</p>
+      <div class="info-card hl">
+        <div class="card-tag">Digital — GoTyme</div>
+        <h4>A Ready-Made Digital Banking Foothold</h4>
+        <p>The BSP has granted digital bank licenses to only six institutions in the Philippines. RBC held a <strong>20% stake in GoTyme Bank</strong> — one of those six — co-owned with Singapore's Tyme Group and the Gokongwei Group. Obtaining a new digital bank license is a multi-year regulatory process. By acquiring RBC, BPI inherited this stake immediately. (Though as we'll discuss, BPI later chose to divest it due to product overlap — itself an interesting post-merger strategy lesson.)</p>
       </div>
-      <div class="info-card highlight">
-        <div class="card-tag">Ecosystem</div>
-        <h4>Gokongwei Group Ecosystem Access</h4>
-        <p>The deal brought the Gokongwei Group into BPI's shareholder base, unlocking privileged access to <strong>Cebu Pacific</strong> (payroll), <strong>Robinsons Retail</strong> (merchant acquiring), <strong>Universal Robina</strong> (corporate banking), and Robinsons Land — a captive commercial ecosystem.</p>
+      <div class="info-card hl">
+        <div class="card-tag">Ecosystem — Gokongwei Network</div>
+        <h4>Access to the Gokongwei Commercial Universe</h4>
+        <p>By bringing JG Summit Holdings and Robinsons Retail into its shareholder base, BPI gained privileged commercial access to one of the Philippines' most powerful conglomerates. This means potential payroll banking contracts with <strong>Cebu Pacific</strong>, merchant acquiring at over 200 <strong>Robinsons Retail</strong> stores, corporate lending to <strong>Universal Robina Corporation</strong>, and real estate-linked banking with <strong>Robinsons Land</strong>. The bank-within-a-mall model that RBC pioneered in Robinsons malls nationwide is now a BPI asset.</p>
       </div>
-      <div class="info-card highlight">
-        <div class="card-tag">Funding</div>
-        <h4>CASA Ratio Enhancement</h4>
-        <p>RBC's current account and savings account (CASA) ratio stood at <strong>83%</strong> — four percentage points higher than BPI's ~79%. A higher CASA ratio means lower funding costs for the combined bank, directly improving net interest margin.</p>
+      <div class="info-card hl">
+        <div class="card-tag">Funding — CASA</div>
+        <h4>A Better Deposit Mix Means Cheaper Funding</h4>
+        <p>RBC's <strong>current account and savings account (CASA) ratio of 83%</strong> was four percentage points higher than BPI's 79%. CASA deposits are the cheapest source of bank funding — they carry near-zero interest cost compared to time deposits. A higher combined CASA ratio translates directly into lower average funding costs, protecting net interest margins and improving profitability. In a rising rate environment, this is a structural competitive advantage.</p>
       </div>
     </div>
 
-    <h3 style="font-size:1.15rem; font-weight:800; color:#7b2d00; margin:2.5rem 0 1rem;">JG Summit / Gokongwei Group's Motives (Seller)</h3>
-    <div class="cards-grid">
+    <h3 style="font-size:1.1rem; font-weight:800; color:var(--dark); margin: 2.5rem 0 1rem;">The Seller's Perspective — Why the Gokongweis Said Yes</h3>
+
+    <div class="quote-block">
+      <blockquote>"Banking is a scale game and will continue to require additional capital for growth. By merging with BPI, Robinsons Bank will be able to fully participate in the growth of a much larger institution."</blockquote>
+      <cite>— Lance Gokongwei, President &amp; CEO, JG Summit Holdings</cite>
+    </div>
+
+    <div class="cards-grid" style="margin-top:1.5rem;">
       <div class="info-card">
-        <div class="card-tag">Scale</div>
-        <h4>The Banking Scale Imperative</h4>
-        <p>Lance Gokongwei, JG Summit's president, stated directly: <em>"Banking is a scale game and will continue to require additional capital for growth."</em> As the 16th-ranked bank, RBC faced structural capital limitations to compete with the top universal banks.</p>
+        <div class="card-tag">Scale Imperative</div>
+        <h4>Banking Requires Scale — And RBC Was Running Out of Runway</h4>
+        <p>As the 16th-ranked bank, RBC had grown impressively but faced a structural ceiling. Philippine regulations require banks to hold increasing capital buffers as they grow. To continue expanding its loan book at the same pace, RBC would have needed repeated capital injections from JG Summit — capital that could be deployed in the Group's other businesses (Cebu Pacific, Universal Robina, etc.) with potentially higher returns. Merging into BPI solved the capital constraint permanently.</p>
       </div>
       <div class="info-card">
-        <div class="card-tag">Strategic Investment</div>
-        <h4>Converting a Small Bank Stake into a Large Bank Stake</h4>
-        <p>Rather than a cash exit, the Gokongweis converted their controlling position in a mid-sized bank into a <strong>~6% strategic stake in the 3rd-largest bank</strong> in the country — gaining upside from BPI's superior scale and performance.</p>
+        <div class="card-tag">Strategic Equity Stake</div>
+        <h4>Trading a Small Bank Stake for a Large Bank Stake</h4>
+        <p>Rather than a cash exit, the Gokongweis structured the deal to receive <strong>BPI shares</strong> in return — ultimately holding a combined <strong>~9% stake in BPI</strong> (the second-largest shareholder group). This is not merely a financial investment; it is a long-term strategic position in the third-largest bank in the country, with board influence and continued upside participation in BPI's growth trajectory.</p>
       </div>
       <div class="info-card">
-        <div class="card-tag">Value</div>
-        <h4>Shareholder Value Maximization</h4>
-        <p>The ~PHP 32 billion deal value at a <strong>~1.6x price-to-book premium</strong> provided the Gokongwei entities with a liquid, publicly traded BPI shareholding — far more liquid than their RBC stake, which was privately held.</p>
+        <div class="card-tag">Liquidity &amp; Valuation</div>
+        <h4>Converting an Illiquid Asset into a Publicly Traded Holding</h4>
+        <p>RBC's shares were not publicly listed and therefore had limited secondary market liquidity. The merger converted the Gokongwei entities' stake into BPI shares — one of the most liquid bank stocks on the Philippine Stock Exchange. The implied deal value of <strong>~1.6x book</strong> also represented a fair premium, validating RBC's growth trajectory and strategic value in the eyes of the market.</p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      TOPIC 2: VALUATION
 ═══════════════════════════════════════════════════ -->
-<section id="valuation" style="background: var(--white);">
+<div class="section-white" id="valuation">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Topic 2 — Valuation of Target Companies</div>
-      <h2>How Was Robinsons Bank Valued?</h2>
+      <h2>How Much Was Robinsons Bank Worth?</h2>
       <div class="divider"></div>
-      <p>Valuing a financial institution differs from valuing industrial companies — metrics like Price-to-Book, Return on Equity, and CASA ratio are central to bank valuation.</p>
+      <p>Valuing a bank is fundamentally different from valuing a manufacturing or technology company. Banks' assets are primarily financial claims, and their value depends on credit quality, funding structure, growth trajectory, and regulatory capital position — not on EBITDA multiples or discounted cash flows alone.</p>
     </div>
 
-    <div class="two-col">
+    <div class="narrative">
+      Determining a fair price for RBC required BPI's financial team and advisors to look beyond simple book value. They had to assess the quality and sustainability of RBC's growth, the value of its embedded franchise within Robinsons malls, the worth of its GoTyme stake, and the long-term commercial relationship with the Gokongwei Group that the deal would bring. The result was a deal that valued RBC at approximately <strong>1.6 times its book equity</strong> — a premium that the market, regulators, and both sets of shareholders ultimately endorsed.
+    </div>
+
+    <div class="two-col" style="margin-top:2rem;">
       <div>
-        <h3 style="color:var(--navy); font-size:1.05rem; font-weight:800; margin-bottom:.75rem;">Deal Economics at a Glance</h3>
+        <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:1rem;">Deal Metrics at a Glance</h3>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Metric</th><th>Value</th></tr></thead>
             <tbody>
-              <tr><td>Total Deal Value</td><td class="tag-blue">~PHP 32 Billion (≈ USD 570–580M)</td></tr>
-              <tr><td>Consideration Type</td><td>Pure Stock Swap — No Cash</td></tr>
-              <tr><td>BPI Shares Issued</td><td>~314 million new common shares</td></tr>
-              <tr><td>Gokongwei's BPI Stake</td><td>~6% of BPI (rising to ~9% combined with RRHI's open-market purchases)</td></tr>
-              <tr><td>RBC Total Assets (Jun 2022)</td><td>PHP 175.9 Billion</td></tr>
-              <tr><td>RBC Net Loans</td><td>PHP 102.4 Billion</td></tr>
+              <tr><td>Total Deal Value</td><td class="tag-red">~PHP 32 Billion (≈ USD 570–580M)</td></tr>
+              <tr><td>Consideration Type</td><td>100% Stock Swap — Zero Cash</td></tr>
+              <tr><td>New BPI Shares Issued</td><td>~314 million (max 318.9M authorized)</td></tr>
+              <tr><td>Gokongwei Group's BPI Stake</td><td>~9% combined (JGSCSC + RRHI)</td></tr>
+              <tr><td>RBC Total Assets</td><td>PHP 175.9 Billion</td></tr>
+              <tr><td>RBC Net Loans &amp; Receivables</td><td>PHP 102.4 Billion</td></tr>
               <tr><td>RBC Total Deposits</td><td>PHP 139.0 Billion</td></tr>
               <tr><td>RBC Total Liabilities</td><td>PHP 156.0 Billion</td></tr>
               <tr><td>Implied Net Book Value</td><td>~PHP 19.9 Billion</td></tr>
-              <tr><td><strong>Implied Price-to-Book Multiple</strong></td><td class="tag-blue"><strong>~1.6x</strong></td></tr>
+              <tr><td><strong>Implied Price-to-Book Multiple</strong></td><td class="tag-red"><strong>~1.6x Book</strong></td></tr>
+              <tr><td>BPI Capital Stock Increase</td><td>PHP 50.6B → PHP 54.6B</td></tr>
             </tbody>
           </table>
         </div>
       </div>
+
       <div>
-        <h3 style="color:var(--navy); font-size:1.05rem; font-weight:800; margin-bottom:.75rem;">Key Valuation Concepts Applied</h3>
+        <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:1rem;">Bank Valuation Methods Applied</h3>
         <ul class="styled-list">
-          <li><strong>Price-to-Book (P/B) Ratio:</strong> The most common bank valuation metric. RBC was valued at ~1.6x book equity, reflecting a growth premium above its net assets.</li>
-          <li><strong>CASA Ratio:</strong> A high CASA ratio (83%) signals lower funding cost — a quality premium baked into valuation.</li>
-          <li><strong>Consumer Loan CAGR:</strong> A 30% 5-year consumer loan CAGR justifies a higher multiple than slower-growing banks.</li>
-          <li><strong>Deposit Franchise Value:</strong> PHP 139B in deposits represents a stable, low-cost funding base with significant strategic value.</li>
-          <li><strong>Strategic Asset Premium:</strong> The 20% GoTyme Bank stake (a BSP-licensed digital bank) was a separately identifiable strategic asset embedded in the deal price.</li>
-          <li><strong>Share Exchange Ratio:</strong> No fixed share price was declared; value was determined by the implied market value of BPI shares issued on the effectivity date.</li>
+          <li><strong>Price-to-Book (P/B) Ratio:</strong> The primary valuation anchor for bank M&amp;A globally. At ~1.6x book, BPI paid a growth premium above RBC's net asset value — justified by RBC's 30% consumer loan CAGR and high CASA ratio.</li>
+          <li><strong>Deposit Franchise Value:</strong> PHP 139B in deposits, predominantly CASA (83%), represents a stable, sticky, low-cost funding base worth more than its accounting value.</li>
+          <li><strong>Consumer Loan Portfolio Quality:</strong> RBC's 42% consumer loan concentration, growing at 30% CAGR, commanded a premium over BPI's own slower-growing consumer book — this was the strategic "plug" BPI was buying.</li>
+          <li><strong>GoTyme Stake Valuation:</strong> The 20% stake in a BSP-licensed digital bank was a separately identifiable strategic asset embedded in the deal, contributing to the premium above book.</li>
+          <li><strong>Share Exchange Ratio:</strong> Rather than a fixed share price, the exchange ratio was tied to BPI's prevailing market share price at deal effectivity — aligning value with live market conditions.</li>
+          <li><strong>NPL Coverage Assessment:</strong> BPI's credit team stress-tested the combined NPL coverage ratio, confirming it would remain above 160% — providing sufficient buffer even under adverse scenarios.</li>
         </ul>
-        <div class="callout accent-border" style="margin-top:1.25rem;">
-          <strong>Pre-Closing Market Move:</strong> Prior to deal closing, RRHI spent approximately <strong>PHP 20 billion in January 2023</strong> to acquire a 4.4% stake in BPI on the open market — signaling the Gokongwei side's strong conviction in BPI's valuation and desire to build economic exposure before the formal share issuance.
-        </div>
       </div>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin: 2.5rem 0 1rem;">BPI's Authorized Capital Increase</h3>
-    <div class="callout">
-      To accommodate the new share issuances, BPI's authorized capital stock was increased from <strong>PHP 50.6 billion to PHP 54.6 billion</strong> — approved by the SEC on December 29, 2023, as part of the merger approval process. This was required under Philippine law before new primary shares could be issued.
+    <div class="callout callout-gold" style="margin-top:2rem;">
+      <strong>Noteworthy Pre-Closing Market Move:</strong> Prior to the formal share issuance, Robinsons Retail Holdings Inc. (RRHI) spent approximately <strong>PHP 20 billion in January 2023</strong> to purchase a <strong>4.4% stake in BPI on the open market</strong>. This was an unusual pre-closing equity purchase that signaled the Gokongwei side's strong conviction in BPI's valuation. It also meant that by the time the formal merger shares were issued, the Gokongwei Group already had meaningful economic exposure to BPI — making the combined 9% shareholding even more strategically significant.
+    </div>
+
+    <div class="callout callout-dark" style="margin-top:1rem;">
+      <strong>Why No Cash?</strong> The all-stock structure was a deliberate choice. Paying PHP 32 billion in cash would have significantly strained BPI's capital ratios and required either a rights offering or bond issuance — adding execution risk and cost. The stock swap preserved BPI's capital strength while converting RBC's shareholders into BPI shareholders, creating long-term alignment. It also meant the deal did not depend on credit market conditions or financing availability.
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      TOPIC 3: DEAL STRUCTURING
 ═══════════════════════════════════════════════════ -->
-<section id="deal">
+<div class="section-light" id="deal">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Topic 3 — Deal Structuring</div>
-      <h2>How Was the Deal Structured?</h2>
+      <h2>Anatomy of the Transaction</h2>
       <div class="divider"></div>
-      <p>Deal structure determines tax consequences, control outcomes, risk allocation, and integration complexity. The BPI–RBC deal chose an elegant stock-for-asset structure.</p>
+      <p>Deal structure is the architecture of an M&amp;A transaction — it determines who gets what, when, and under what conditions. It shapes tax outcomes, control dynamics, regulatory exposure, and integration complexity. The BPI–RBC deal was elegantly structured as a pure absorption merger with an all-stock consideration.</p>
     </div>
 
-    <div class="two-col" style="margin-bottom:2.5rem;">
-      <div class="info-card highlight" style="padding:2rem;">
+    <div class="two-col">
+      <div class="info-card hl" style="padding:2rem;">
         <div class="card-tag">Transaction Type</div>
-        <h4 style="font-size:1.25rem;">Pure Stock Swap</h4>
-        <p>BPI issued <strong>314 million new primary common shares</strong> to RBC's shareholders — JG Summit Capital Services Corp. and Robinsons Retail Holdings, Inc. — in exchange for all of RBC's net assets and liabilities. <strong>Zero cash was paid.</strong></p>
-        <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
-          <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-            <span style="background:var(--light); border:1px solid var(--border); border-radius:6px; padding:.3rem .75rem; font-size:.82rem; font-weight:600;">No Cash Outlay</span>
-            <span style="background:var(--light); border:1px solid var(--border); border-radius:6px; padding:.3rem .75rem; font-size:.82rem; font-weight:600;">Share Dilution ~6%</span>
-            <span style="background:var(--light); border:1px solid var(--border); border-radius:6px; padding:.3rem .75rem; font-size:.82rem; font-weight:600;">BPI = Surviving Entity</span>
-          </div>
+        <h4 style="font-size:1.2rem;">Pure Stock Swap — Absorption Merger</h4>
+        <p style="margin-top:.5rem;">BPI issued <strong>approximately 314 million new primary common shares</strong> — representing about <strong>6% of its resulting outstanding capital stock</strong> — to JG Summit Capital Services Corp. and Robinsons Retail Holdings Inc., in exchange for all of RBC's net assets, liabilities, and obligations. No cash changed hands. BPI emerged as the sole surviving legal entity. Robinsons Bank Corporation was extinguished as a corporate entity on January 1, 2024.</p>
+        <div style="margin-top:1.25rem; display:flex; flex-wrap:wrap; gap:.5rem;">
+          <span style="background:var(--bpi-red-soft); color:var(--bpi-red); font-size:.75rem; font-weight:700; padding:.3rem .75rem; border-radius:20px; border:1px solid rgba(191,13,35,.2);">Zero Cash</span>
+          <span style="background:var(--bpi-red-soft); color:var(--bpi-red); font-size:.75rem; font-weight:700; padding:.3rem .75rem; border-radius:20px; border:1px solid rgba(191,13,35,.2);">~6% Dilution</span>
+          <span style="background:var(--bpi-red-soft); color:var(--bpi-red); font-size:.75rem; font-weight:700; padding:.3rem .75rem; border-radius:20px; border:1px solid rgba(191,13,35,.2);">BPI Survives</span>
+          <span style="background:var(--bpi-red-soft); color:var(--bpi-red); font-size:.75rem; font-weight:700; padding:.3rem .75rem; border-radius:20px; border:1px solid rgba(191,13,35,.2);">Gokongwei = New BPI Shareholders</span>
         </div>
       </div>
+
       <div>
-        <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:1rem;">Why a Stock Swap?</h3>
+        <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:1rem;">Why Structure It as a Stock Swap?</h3>
         <ul class="styled-list">
-          <li><strong>Preserves BPI's cash:</strong> No cash drain on BPI's balance sheet or capital ratios.</li>
-          <li><strong>Gokongweis become BPI shareholders:</strong> Aligns long-term interests — sellers benefit from BPI's future growth.</li>
-          <li><strong>Simplifies the transaction:</strong> No financing risk, no credit market dependency, no bridge loan required.</li>
-          <li><strong>Tax efficiency:</strong> Stock swaps can defer capital gains taxes for the selling shareholders.</li>
-          <li><strong>Strategic partnership creation:</strong> The Gokongwei Group, with its massive commercial ecosystem, becomes BPI's second-largest shareholder group — creating long-term business relationship incentives.</li>
+          <li><strong>Preserves BPI's capital strength:</strong> No cash drain; BPI's CET1 and CAR ratios remain unaffected by the transaction.</li>
+          <li><strong>Aligns long-term interests:</strong> Sellers become shareholders — the Gokongweis profit from BPI's future success, not just the closing price.</li>
+          <li><strong>Creates a strategic partnership:</strong> The Gokongwei Group, with its massive commercial ecosystem, becomes BPI's second-largest shareholder bloc — creating durable business relationship incentives between the two conglomerates.</li>
+          <li><strong>Removes financing risk:</strong> No bridge loans, no bond markets, no credit risk — the deal closes as long as regulatory approvals are obtained.</li>
+          <li><strong>Potential tax efficiency:</strong> Stock swaps can defer capital gains tax obligations for selling shareholders under certain structures.</li>
+          <li><strong>Simpler closing mechanics:</strong> Compared to a leveraged buyout or a cash-and-stock deal, a pure stock swap has fewer moving parts, reducing execution risk.</li>
         </ul>
       </div>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:1.25rem;">Deal Timeline — Key Structural Milestones</h3>
+    <h3 style="font-size:1.1rem; font-weight:800; color:var(--dark); margin: 2.5rem 0 1.25rem;">Transaction Timeline — From Handshake to Day One</h3>
     <div class="timeline">
       <div class="tl-item">
+        <div class="tl-dot"></div>
         <div class="tl-date">September 30, 2022</div>
-        <div class="tl-title">Merger Agreement Executed</div>
-        <div class="tl-body">Boards of BPI, RBC, RRHI, and JG Summit Capital approve the merger agreement. Initial Merger Plan signed.</div>
+        <div class="tl-title">Merger Agreement Executed by All Parties</div>
+        <div class="tl-body">Boards of BPI, RBC, RRHI, and JG Summit Capital Services Corp. all approve and sign the initial Merger Plan. This triggers mandatory disclosure obligations to the PSE and SEC, and starts the regulatory clock.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date">October 2022</div>
-        <div class="tl-title">Public Announcement</div>
-        <div class="tl-body">BPI and JG Summit Holdings publicly announce the planned merger. Market reacts positively to the strategic rationale.</div>
+        <div class="tl-dot"></div>
+        <div class="tl-date">October 5, 2022</div>
+        <div class="tl-title">Public Announcement — Markets Respond</div>
+        <div class="tl-body">The merger is announced to the public. BPI shares react positively as investors recognize the strategic rationale. The deal is widely covered by Philippine financial media and analysts begin modeling the combined bank's financials.</div>
       </div>
       <div class="tl-item">
+        <div class="tl-dot"></div>
         <div class="tl-date">January 17, 2023</div>
-        <div class="tl-title">Shareholder Ratification</div>
-        <div class="tl-body">Both BPI and RBC hold Special Stockholders Meetings and vote to approve the merger plans — a required corporate law step under the Revised Corporation Code.</div>
+        <div class="tl-title">Special Stockholders Meetings — Shareholders Vote "Yes"</div>
+        <div class="tl-body">Both BPI and RBC hold separate Special Stockholders Meetings on the same date. The merger plan is ratified by a majority of shareholders — a mandatory requirement under the Revised Corporation Code of the Philippines (RA 11232). This was a significant milestone: it represented the democratic mandate of the owners of both institutions.</div>
       </div>
       <div class="tl-item">
+        <div class="tl-dot"></div>
         <div class="tl-date">January 2023</div>
-        <div class="tl-title">RRHI Open-Market BPI Purchase</div>
-        <div class="tl-body">Robinsons Retail Holdings Inc. spends ~PHP 20 billion to acquire a 4.4% stake in BPI on the open market, pre-positioning ahead of the formal share issuance.</div>
+        <div class="tl-title">RRHI Acquires 4.4% BPI Stake on Open Market (~PHP 20B)</div>
+        <div class="tl-body">Robinsons Retail Holdings Inc. buys BPI shares on the Philippine Stock Exchange, pre-positioning the Gokongwei Group ahead of the formal share issuance. This bold market move signals conviction in the deal and in BPI's intrinsic value.</div>
       </div>
       <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">March 9, 2023</div>
+        <div class="tl-title">PCC Phase 1 Initial Clearance</div>
+        <div class="tl-body">The Philippine Competition Commission grants initial Phase 1 clearance, allowing the merger to proceed into deeper antitrust review. The deal is formally notified to the PCC under the Philippine Competition Act.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">September 13, 2023</div>
+        <div class="tl-title">PCC Issues Final Unconditional Merger Clearance</div>
+        <div class="tl-body">The PCC issues Commission Decision No. 02-M-001/2023, clearing the merger with no behavioral or structural conditions. A major regulatory milestone — and a validation that the combined bank would not substantially lessen competition in any Philippine banking market.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
         <div class="tl-date">October 20, 2023</div>
         <div class="tl-title">Supplemental Merger Plan Executed</div>
-        <div class="tl-body">Both banks execute a Supplemental Merger Plan to update and finalize terms ahead of regulatory closings.</div>
+        <div class="tl-body">Both banks execute a Supplemental Merger Plan updating and finalizing transaction terms in preparation for the final regulatory approvals from BSP and SEC.</div>
       </div>
       <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">December 14–15, 2023</div>
+        <div class="tl-title">BSP Monetary Board Approves the Merger (Resolution 1633)</div>
+        <div class="tl-body">The most consequential approval: the Bangko Sentral ng Pilipinas' Monetary Board formally clears the merger through Resolution 1633. BSP's approval is the gating item for all bank mergers in the Philippines — no deal can proceed without it.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
         <div class="tl-date">December 29, 2023</div>
-        <div class="tl-title">SEC Approves Merger &amp; Share Issuance</div>
-        <div class="tl-body">Final corporate law hurdle cleared. SEC approves BPI's capital stock increase from PHP 50.6B to PHP 54.6B and the issuance of up to 318,912,319 new shares.</div>
+        <div class="tl-title">SEC Approves Merger, Capital Increase &amp; Share Issuance</div>
+        <div class="tl-body">The Securities and Exchange Commission approves the Merger Plan, BPI's capital stock increase from PHP 50.6B to PHP 54.6B, and the issuance of up to 318,912,319 new BPI common shares. All corporate law requirements now satisfied.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date">January 1, 2024</div>
-        <div class="tl-title">Merger Effective — RBC Absorbed by BPI</div>
-        <div class="tl-body">All RBC assets, liabilities, rights, and obligations transferred to BPI by operation of law. BPI issues ~314 million new primary shares to JGSCSC and RRHI. Robinsons Bank ceases to exist as a legal entity.</div>
+        <div class="tl-dot"></div>
+        <div class="tl-date">January 1, 2024 — Day One</div>
+        <div class="tl-title">Merger Becomes Effective — Robinsons Bank Ceases to Exist</div>
+        <div class="tl-body">At midnight on the first day of 2024, all of RBC's assets, liabilities, rights, and obligations transferred to BPI by operation of Philippine law. BPI issued approximately 314 million new primary shares to JGSCSC and RRHI. Robinsons Bank Corporation's corporate charter was cancelled. The combined bank opened with over PHP 2.8 trillion in assets and more than 1,100 branches nationwide.</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      TOPIC 4: DUE DILIGENCE
 ═══════════════════════════════════════════════════ -->
-<section id="diligence" style="background: var(--white);">
+<div class="section-white" id="diligence">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Topic 4 — Due Diligence</div>
-      <h2>What Did BPI Examine Before the Deal?</h2>
+      <h2>The Investigation Before the Commitment</h2>
       <div class="divider"></div>
-      <p>Due diligence is the rigorous investigation process conducted by an acquirer to validate assumptions, uncover risks, and set deal terms. For bank mergers, this process is multi-layered and heavily regulated.</p>
+      <p>Due diligence is the structured process by which an acquirer investigates a target before committing to a deal. In bank mergers, it is especially intensive — regulators, shareholders, and depositors all depend on it being done thoroughly. For BPI, examining Robinsons Bank meant looking under every hood.</p>
     </div>
 
-    <div class="cards-grid">
+    <div class="narrative">
+      Due diligence for a bank-to-bank merger of this scale typically involves dozens of workstreams, hundreds of professionals, and months of analysis. While the internal specifics of BPI's due diligence process remain confidential — as is standard for bank M&amp;A — the publicly disclosed deal rationale, regulatory submissions, and post-announcement statements reveal the key areas that were clearly examined and validated. The ultimate judgment that "RBC's asset quality, while not as strong as BPI's, is very manageable" (as stated by BPI management) could only have come from a thorough loan-by-loan credit review.
+    </div>
+
+    <div class="cards-grid" style="margin-top:2rem;">
       <div class="info-card">
         <div class="card-tag">Financial DD</div>
-        <h4>Credit Quality &amp; Loan Book Review</h4>
-        <p>BPI reviewed RBC's non-performing loan (NPL) ratios and coverage ratios. BPI concluded that RBC's asset quality, <em>"while not as strong as BPI's, is very manageable."</em> The combined NPL coverage ratio remained above <strong>160%</strong> post-merger — a strong buffer.</p>
+        <h4>Credit Quality &amp; NPL Analysis</h4>
+        <p>BPI's credit team conducted a deep review of RBC's non-performing loan (NPL) portfolio — examining NPL ratios, loan loss provisions, coverage ratios, and loan classification practices. BPI concluded the combined NPL coverage would remain above <strong>160%</strong> post-merger, providing a robust buffer. BPI also assessed RBC's loan loss provisioning methodology against its own more conservative standards.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Financial DD</div>
-        <h4>Consumer Loan Growth Verification</h4>
-        <p>Validated RBC's claimed 30% consumer loan CAGR over five years and the 42% consumer loan composition of its book. This was the core financial thesis of the deal and required rigorous loan-level verification.</p>
+        <h4>Consumer Loan Portfolio Validation</h4>
+        <p>The core financial thesis of the deal was RBC's consumer loan book — its 42% consumer loan concentration and 30% CAGR. BPI needed to verify these figures at the loan-level: Are they sustainable? What is the underlying credit quality? What is the default rate trend? What markets and demographics are being served? Validating this justified the premium BPI paid.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Financial DD</div>
-        <h4>Deposit Quality &amp; CASA Analysis</h4>
-        <p>Verified RBC's 83% CASA ratio — a key funding quality metric. Assessed deposit concentration, customer stickiness, and the stability of Robinsons Mall-based deposit accounts, which are embedded in daily retail foot traffic.</p>
+        <h4>Deposit Quality &amp; CASA Verification</h4>
+        <p>RBC's 83% CASA ratio was a headline attraction. BPI's team needed to verify deposit concentration, stickiness of relationships, and whether the CASA ratio reflected genuine low-cost retail deposits or seasonally inflated institutional balances. The heavy presence in Robinsons Malls — with retail foot traffic and merchant accounts — supported the sustainability of RBC's CASA composition.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Strategic DD</div>
-        <h4>Branch Network &amp; Geographic Footprint</h4>
-        <p>Mapped RBC's 189 branches and 354 ATMs against BPI's existing network to identify overlap and whitespace opportunities. RBC's heavy presence inside <strong>Robinsons Malls</strong> was a distinct strategic asset — captive retail banking in controlled real estate.</p>
+        <h4>Branch Network &amp; Geographic Mapping</h4>
+        <p>BPI's strategy team mapped all 189 RBC branches and 354 ATMs against BPI's existing network. This identified overlap (where consolidation might be needed), whitespace (where RBC fills BPI gaps), and captive opportunities (particularly the Robinsons Mall branches, which BPI did not previously have access to). This mapping directly informed the three-wave integration plan.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Strategic DD</div>
         <h4>GoTyme Bank Stake Assessment</h4>
-        <p>Separately valued RBC's 20% stake in GoTyme Bank (BSP-licensed digital bank). Assessed GoTyme's digital product offerings, customer base, BSP licensing conditions, and co-ownership arrangements with Singapore's Tyme Group and the Gokongwei Group.</p>
+        <p>The 20% GoTyme stake required its own valuation — BSP-licensed digital bank licenses are scarce, but the strategic fit needed to be assessed. How does GoTyme's product suite overlap with BPI's digital banking roadmap? What are the governance obligations of the co-ownership? What is the liquidity of the stake? Ironically, this due diligence likely laid the groundwork for BPI's eventual decision to divest the stake post-closing.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Technology DD</div>
-        <h4>Core Banking Systems &amp; IT Infrastructure</h4>
-        <p>Assessed RBC's core banking platform compatibility with BPI's systems for migration planning. This shaped the phased 2024–2026 integration schedule — IT integration timelines drove branch conversion sequencing.</p>
+        <h4>Core Banking Systems &amp; IT Compatibility</h4>
+        <p>IT due diligence in bank mergers is often the most complex and risk-laden workstream. BPI needed to understand RBC's core banking platform architecture, data infrastructure, and digital banking stack — and assess the migration path to BPI's systems. The findings here directly drove the <strong>2.5-year phased integration schedule</strong>: IT readiness, not regulatory constraints, dictated the branch conversion timeline.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Regulatory DD</div>
-        <h4>BSP Compliance &amp; Regulatory Standing</h4>
-        <p>Reviewed RBC's history of BSP examinations, regulatory enforcement actions (if any), capital adequacy ratios (CAR), reserve requirements compliance, and DOSRI (Directors, Officers, Stockholders, and Related Interests) lending limits.</p>
+        <h4>BSP Compliance History &amp; Capital Position</h4>
+        <p>BPI reviewed RBC's full BSP regulatory record: capital adequacy ratios, reserve requirement compliance, past examination findings, DOSRI lending positions, and single borrower limit utilization. Any prior regulatory enforcement action or capital shortfall would have been a deal-breaker. The BSP's eventual approval confirmed RBC had a clean enough regulatory standing to merit the merger.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Legal DD</div>
-        <h4>Antitrust &amp; Competition Law Assessment</h4>
-        <p>Assessed whether the merger would trigger compulsory PCC notification thresholds under the Philippine Competition Act (RA 10667). Both deal value and Philippine asset/revenue size exceeded PCC thresholds — formal PCC review was mandatory and anticipated in deal planning.</p>
+        <h4>Competition Law Assessment &amp; PCC Readiness</h4>
+        <p>BPI's legal team assessed the Philippine Competition Act notification thresholds early in the process. Given both parties' asset sizes and the deal value, PCC notification was clearly mandatory. Understanding the PCC review timeline — and its potential conditions — was critical to setting a realistic closing timeline. The legal team would have pre-modeled market share scenarios across loans, deposits, and credit cards to anticipate the PCC's concerns.</p>
       </div>
       <div class="info-card">
         <div class="card-tag">Commercial DD</div>
-        <h4>Gokongwei Ecosystem Valuation</h4>
-        <p>Assessed the commercial banking, payroll banking, merchant acquiring, and cross-selling opportunities embedded in the Gokongwei Group's portfolio — Cebu Pacific, Universal Robina, Robinsons Retail (over 200 retail locations), and Robinsons Land.</p>
+        <h4>Gokongwei Ecosystem Commercial Mapping</h4>
+        <p>Beyond RBC's financials, BPI assessed the commercial banking opportunities embedded in becoming the Gokongwei Group's banking partner of choice. This meant sizing the payroll banking potential of Cebu Pacific's workforce, the merchant acquiring volume of Robinsons Retail's hundreds of stores, and the corporate lending relationships with Universal Robina — quantifying the ecosystem synergies that justified the strategic premium.</p>
       </div>
     </div>
 
-    <div class="callout red-border" style="margin-top:2rem;">
-      <strong>Important Note for MBA Discussion:</strong> Detailed internal due diligence processes are typically not publicly disclosed in bank-to-bank mergers due to confidentiality. The above reflects analysis inferred from regulatory disclosures, public statements, and deal rationale communicated by both parties. In practice, due diligence for a PHP 32 billion bank acquisition would involve hundreds of workstreams and external advisors including investment banks, law firms, and Big 4 accounting firms.
+    <div class="callout callout-red" style="margin-top:2rem;">
+      <strong>MBA Perspective — What Due Diligence Doesn't Tell You:</strong> Even the most thorough due diligence has limits. The GoTyme situation — where BPI inherited a digital bank stake that later created a conflict of interest — illustrates that strategic compatibility issues sometimes only become clear once integration begins. This is why post-merger integration teams must continue to audit acquired assets and be empowered to divest when the strategic case no longer holds. The lesson is not that due diligence failed, but that strategic circumstances can evolve faster than any pre-deal assessment can predict.
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      TOPIC 5: POST-MERGER INTEGRATION
 ═══════════════════════════════════════════════════ -->
-<section id="integration">
+<div class="section-light" id="integration">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Topic 5 — Post-Merger Integration</div>
-      <h2>Integrating Two Banks After Day 1</h2>
+      <h2>Making One Bank Out of Two</h2>
       <div class="divider"></div>
-      <p>Post-merger integration (PMI) is where most mergers succeed or fail. For BPI–RBC, integration spans branding, technology, operations, customers, and the unexpected GoTyme divestment.</p>
+      <p>Post-merger integration (PMI) is where deals succeed or fail. The financial model may look perfect on paper — but integrating two banks with different cultures, systems, customers, and brands is an operational challenge that unfolds over years, not quarters. BPI's integration of RBC is a textbook case of phased, customer-first PMI.</p>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:1.25rem;">Branch Integration — Phased Rollout Schedule</h3>
+    <div class="narrative">
+      When Robinsons Bank ceased to exist at midnight on January 1, 2024, roughly two million customers woke up that morning as BPI clients — whether they knew it yet or not. BPI's integration team had spent the preceding months preparing for this moment: ensuring no customer would be left without access to their accounts, no branch would close unexpectedly, and no transaction would be lost in the transition. The guiding principle was simple: <strong>the customer should feel nothing on Day One</strong>. Everything else — rebranding, system migration, product conversion — would follow in carefully managed waves.
+    </div>
+
+    <h3 style="font-size:1.1rem; font-weight:800; color:var(--dark); margin: 2rem 0 1rem;">The Three-Wave Branch Integration Plan</h3>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Wave</th><th>Target Date</th><th>Coverage</th><th>Status</th></tr>
+          <tr><th>Wave</th><th>Target Date</th><th>Geographic Coverage</th><th>Status</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>Merger Effectivity</td>
+            <td>Legal Day One</td>
             <td>January 1, 2024</td>
-            <td>Legal absorption. All RBC accounts remain operational. No immediate customer disruption.</td>
+            <td>All RBC accounts operational under BPI ownership. No branch changes yet. Customers notified via email, SMS, and postal mail.</td>
             <td class="tag-green">✓ Complete</td>
           </tr>
           <tr>
             <td>Wave 1</td>
             <td>April 18, 2025</td>
-            <td>Select Metro Manila and provincial branches (BGC, Makati, QC, Parañaque, South Luzon, Visayas, Mindanao regions)</td>
+            <td>Metro Manila (BGC, Makati, QC, Parañaque), South Luzon (Batangas, Cavite, Laguna), select Visayas and Mindanao branches</td>
             <td class="tag-green">✓ Complete</td>
           </tr>
           <tr>
             <td>Wave 2</td>
             <td>October 6, 2025</td>
-            <td>Broader national coverage across Luzon, Visayas, Mindanao</td>
+            <td>Broader Luzon coverage (Baguio, Pampanga, Ilocos, Nueva Ecija), additional Visayas (Iloilo, Negros, Bohol), Mindanao (CDO, Butuan, Iligan)</td>
             <td class="tag-blue">⚙ In Progress</td>
           </tr>
           <tr>
-            <td>Wave 3 (Final)</td>
+            <td>Wave 3 — Final</td>
             <td>May 11, 2026</td>
-            <td>Remaining branches — full network integration complete</td>
-            <td class="tag-blue">⏳ Upcoming</td>
+            <td>All remaining Robinsons Bank branches converted. Full national integration complete across all 189 former RBC branches.</td>
+            <td class="tag-muted">⏳ Upcoming</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="two-col" style="margin:2.5rem 0;">
+    <div class="narrative" style="margin-top:1.5rem;">
+      The three-wave schedule is not arbitrary — it reflects the pace of IT system migration. Each branch conversion requires its customer accounts, loan records, and transaction history to be migrated from RBC's legacy core banking system to BPI's platform. Doing this all at once would create unacceptable operational risk for millions of customers. The phased approach, while slower, dramatically reduces the likelihood of customer-facing disruptions and gives BPI's integration team the ability to learn from each wave before proceeding to the next.
+    </div>
+
+    <div class="two-col" style="margin-top:2.5rem;">
       <div>
-        <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:1rem;">Customer Integration</h3>
+        <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:1rem;">Customer Account Migration</h3>
         <ul class="styled-list">
-          <li><strong>No immediate disruption:</strong> BPI's core communication principle — RBC accounts remain functional on Day 1.</li>
-          <li><strong>Deposit accounts</strong> (savings, time deposits, current accounts) migrated to BPI platforms in phased batches aligned with branch wave schedule.</li>
-          <li><strong>Trust accounts:</strong> RBC Trust clients transferred to <strong>BPI Wealth</strong>, BPI's wholly owned trust and asset management subsidiary.</li>
-          <li><strong>Credit products:</strong> Personal loans, salary loans (InstaBale), and business credit lines ported to BPI systems.</li>
-          <li><strong>Cards:</strong> RBC UNO and DOS branded credit and debit cards transitioned to BPI card products over time.</li>
-          <li><strong>Digital banking:</strong> RBC app and online banking users migrated to BPI's digital platforms.</li>
-          <li>Customers notified by email, SMS, and postal mail about their specific branch and account migration dates.</li>
+          <li><strong>Deposit accounts</strong> (savings, time deposits, current accounts) migrated to BPI's platform aligned with each branch wave, ensuring no service interruption.</li>
+          <li><strong>Trust accounts:</strong> RBC Trust clients transferred to <strong>BPI Wealth</strong> — BPI's wholly-owned trust and asset management subsidiary — with full continuity of investment portfolios.</li>
+          <li><strong>Personal and salary loans</strong> (including RBC's "InstaBale" product) ported to BPI's credit systems with no change in loan terms for existing borrowers.</li>
+          <li><strong>Credit &amp; debit cards:</strong> RBC's UNO and DOS branded cards transitioned progressively to BPI card products over the integration period.</li>
+          <li><strong>Digital banking:</strong> RBC mobile app and online banking users migrated to BPI's digital platforms with advance notice and guided onboarding.</li>
+          <li>Customers notified via <strong>email, SMS, and postal mail</strong> about their specific branch migration dates, new account numbers (where applicable), and new product terms.</li>
         </ul>
       </div>
       <div>
-        <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:1rem;">Branding &amp; ATM Network</h3>
+        <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:1rem;">Branding &amp; Physical Network</h3>
         <ul class="styled-list">
-          <li>The <strong>Robinsons Bank brand was retired.</strong> All branches, signage, and marketing materials are being progressively replaced with BPI branding.</li>
-          <li>RBC's <strong>354 ATMs</strong> added to BPI's existing ~3,000+ ATM network — expanding reach especially in Robinsons Mall locations.</li>
-          <li>Combined bank now has <strong>1,100+ branches and branch-lite units</strong> nationally.</li>
-          <li>RBC's captive presence inside <strong>Robinsons Malls</strong> across the Philippines is a key inherited asset — embedded banking in high-foot-traffic retail locations.</li>
+          <li>The <strong>Robinsons Bank brand was retired</strong> permanently on January 1, 2024. All branch signage, marketing materials, and digital assets are progressively replaced with BPI branding across the three waves.</li>
+          <li>RBC's <strong>354 ATMs</strong> integrated into BPI's existing ~3,000+ ATM network — one of the largest in the Philippines — expanding reach especially in Robinsons Mall locations.</li>
+          <li>Combined bank operates <strong>1,100+ branches and branch-lite units</strong> nationally, surpassing previous standalone counts for both banks.</li>
+          <li>RBC's embedded presence in <strong>Robinsons Malls</strong> nationwide is now a BPI asset — captive banking inside one of the Philippines' largest mall networks, with controlled foot traffic and retail synergies.</li>
+          <li>The geographic reach added includes deep provincial coverage in Ilocos, Bicol, Leyte, Zamboanga, and other regions where BPI's footprint was previously lighter.</li>
         </ul>
-        <div class="callout accent-border" style="margin-top:1rem;">
-          <strong>Geographic Footprint Gained:</strong> Luzon (Baguio, Pampanga, Ilocos, Bicol), Visayas (Cebu, Iloilo, Negros, Bohol), Mindanao (Davao, CDO, Zamboanga) — deepening BPI's provincial reach.
-        </div>
       </div>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:1.25rem;">Expected Synergies</h3>
+    <h3 style="font-size:1.1rem; font-weight:800; color:var(--dark); margin: 2.5rem 0 1.25rem;">Expected Synergies from Integration</h3>
     <div class="pillar-grid">
       <div class="pillar">
         <div class="p-icon">📈</div>
         <h4>Revenue Synergies</h4>
-        <p>+7% revenue contribution; +5–6% net income accretion; consumer loan CAGR acceleration; Gokongwei ecosystem cross-selling</p>
+        <p>+7% revenue contribution; +5–6% net income accretion; Gokongwei Group cross-selling; consumer CAGR acceleration</p>
       </div>
       <div class="pillar">
         <div class="p-icon">💳</div>
         <h4>Funding Synergies</h4>
-        <p>Improved CASA ratio (~80%+); 2nd place deposit ranking reduces competitive pressure on deposit pricing</p>
+        <p>Combined CASA ratio ~80%+; deposit ranking rises to 2nd nationally; lower funding cost improves net interest margin</p>
       </div>
       <div class="pillar">
         <div class="p-icon">🏢</div>
         <h4>Network Synergies</h4>
-        <p>Robinsons Mall branch presence + 354 ATMs; geographic expansion into RBC-dominant provinces</p>
+        <p>Robinsons Mall branch presence; 354 additional ATMs; deeper reach in provinces where BPI had gaps</p>
       </div>
       <div class="pillar">
         <div class="p-icon">⚙️</div>
         <h4>Operational Synergies</h4>
-        <p>Shared back-office IT; branch rationalization in overlapping areas; elimination of duplicative compliance and legal functions</p>
+        <p>Branch rationalization in overlapping areas; shared back-office and IT infrastructure; elimination of duplicative functions</p>
       </div>
       <div class="pillar">
         <div class="p-icon">🛡️</div>
         <h4>Capital Synergies</h4>
-        <p>Combined NPL coverage above 160%; diversified loan book reduces concentration risk; stronger single-borrower headroom</p>
+        <p>Combined NPL coverage above 160%; diversified loan book reduces sector concentration risk; stronger regulatory capital base</p>
       </div>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin:2.5rem 0 1rem;">The GoTyme Divestment — An Integration Curveball</h3>
-    <div class="callout red-border">
-      <strong>What happened:</strong> BPI inherited RBC's 20% stake in GoTyme Bank through the merger. However, upon strategic review, BPI identified a <strong>conflict of interest</strong> — GoTyme's product offerings significantly overlapped with BPI's own digital banking roadmap. BPI subsequently divested its <strong>15% GoTyme stake</strong>, selling 752.06 million GoTyme shares at PHP 1.20/share for a total of <strong>PHP 902.47 million</strong> (to GoTyme Financial and Giga Investment Holdings). The BSP approved the divestment on <strong>October 9, 2024</strong>, finalized <strong>April 1, 2024</strong>.
+    <h3 style="font-size:1.1rem; font-weight:800; color:var(--dark); margin: 2.5rem 0 1rem;">The GoTyme Divestment — Integration's Most Interesting Chapter</h3>
+
+    <div class="quote-block">
+      <blockquote>BPI inherited Robinsons Bank's stake in GoTyme Bank as part of the merger — but upon strategic review, determined that the digital bank's product overlaps with BPI's own digital roadmap created an irreconcilable conflict of interest. The stake was sold rather than integrated.</blockquote>
+      <cite>— Summarized from BPI public disclosures, 2024</cite>
+    </div>
+
+    <div class="callout callout-red" style="margin-top:1.5rem;">
+      <strong>What happened:</strong> BPI inherited RBC's 20% stake in GoTyme Bank — a BSP-licensed digital bank co-owned with Singapore's Tyme Group and the Gokongwei Group. After its own strategic review, BPI concluded that GoTyme's product suite created a direct conflict with BPI's digital banking ambitions. Rather than managing a competing digital bank alongside its own digital platform, BPI chose to exit cleanly. BPI sold <strong>752.06 million GoTyme shares at PHP 1.20/share</strong> — totaling <strong>PHP 902.47 million</strong> — to GoTyme Financial and Giga Investment Holdings. The BSP approved the divestment on <strong>October 9, 2024</strong>, with the sale finalized on <strong>April 1, 2024</strong>.
       <br/><br/>
-      <strong>MBA Lesson:</strong> Post-merger strategic reviews often reveal that not all acquired assets are worth keeping. The ability to divest a non-core asset cleanly — with regulator approval — is itself an important integration capability.
+      <strong>The MBA Lesson:</strong> Not all assets acquired in a deal are worth keeping. The willingness to divest — quickly, cleanly, and at a reasonable price — is itself a sign of integration sophistication. A less disciplined acquirer might have held on to the GoTyme stake indefinitely, creating strategic ambiguity and governance complexity. BPI's decision to exit reflects a clear-eyed view of where its digital banking strategy should be concentrated.
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      TOPIC 6: LEGAL & REGULATORY
 ═══════════════════════════════════════════════════ -->
-<section id="legal" style="background: var(--white);">
+<div class="section-white" id="legal">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Topic 6 — Legal &amp; Regulatory Considerations</div>
-      <h2>Navigating the Philippine Regulatory Framework</h2>
+      <h2>The Regulatory Gauntlet</h2>
       <div class="divider"></div>
-      <p>Bank mergers in the Philippines are among the most heavily regulated M&amp;A transactions — requiring simultaneous approvals from four separate government bodies, each with distinct mandates.</p>
+      <p>Bank mergers in the Philippines are among the most heavily regulated M&amp;A transactions in any industry. The BPI–RBC deal required simultaneous navigation of four distinct regulatory bodies — each with its own mandate, timeline, and standards. Managing this multi-regulator process without a single approval derailing the deal is a hallmark of sophisticated deal execution.</p>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin-bottom:1.25rem;">The Four Regulatory Gatekeepers</h3>
+    <div class="narrative">
+      From the moment the merger was announced in October 2022 to its effectivity on January 1, 2024, the deal was in active regulatory review for over 14 months. This is not unusual for Philippine bank mergers — the multi-regulator framework is intentional, designed to protect depositors, maintain market competition, and ensure systemic financial stability. Each regulator approached the deal through a different lens, and BPI's legal and regulatory affairs teams had to manage all four tracks simultaneously, often with interlocking timelines.
+    </div>
+
+    <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin: 2rem 0 1.25rem;">The Four Regulatory Gatekeepers</h3>
     <div class="reg-grid">
       <div class="reg-card">
         <div class="reg-icon">⚖️</div>
         <h4>Philippine Competition Commission (PCC)</h4>
-        <p>Antitrust &amp; competition clearance under the Philippine Competition Act (RA 10667). Assessed market concentration in loans, deposits, and credit cards.</p>
-        <span class="reg-date">Cleared: September 13, 2023</span>
+        <p>Antitrust and competition review under the Philippine Competition Act (RA 10667). Assessed whether the merger would substantially lessen competition in loans, deposits, and credit card issuances.</p>
+        <div class="reg-date">Final Clearance: September 13, 2023</div>
       </div>
       <div class="reg-card">
         <div class="reg-icon">🏛️</div>
-        <h4>Bangko Sentral ng Pilipinas (BSP) / Monetary Board</h4>
-        <p>Prudential banking approval under RA 8791 (General Banking Law of 2000). Assessed capital adequacy, liquidity, asset quality, and systemic impact.</p>
-        <span class="reg-date">Resolution 1633: Dec 14–15, 2023</span>
+        <h4>Bangko Sentral ng Pilipinas (BSP)</h4>
+        <p>Prudential banking approval under RA 8791 (General Banking Law of 2000). The Monetary Board assessed capital adequacy, liquidity, asset quality, depositor protection, and systemic financial stability impact.</p>
+        <div class="reg-date">Resolution 1633: December 14–15, 2023</div>
       </div>
       <div class="reg-card">
         <div class="reg-icon">🏦</div>
         <h4>Philippine Deposit Insurance Corporation (PDIC)</h4>
-        <p>Depositor protection review. Assessed impact on deposit insurance obligations and continuity of deposit coverage for RBC account holders.</p>
-        <span class="reg-date">Reviewed during 2023</span>
+        <p>Depositor protection review. Assessed continuity of deposit insurance obligations and ensured no RBC depositors would face gaps in PDIC coverage during or after the transition.</p>
+        <div class="reg-date">Reviewed during 2023</div>
       </div>
       <div class="reg-card">
         <div class="reg-icon">📋</div>
         <h4>Securities and Exchange Commission (SEC)</h4>
-        <p>Corporate law: merger plan approval, new share issuance, and capital stock increase. Governed by the Revised Corporation Code (RA 11232).</p>
-        <span class="reg-date">Approved: December 29, 2023</span>
+        <p>Corporate law compliance under the Revised Corporation Code (RA 11232). Approved the Merger Plan, authorized BPI's capital stock increase from PHP 50.6B to PHP 54.6B, and approved the new share issuance.</p>
+        <div class="reg-date">Approved: December 29, 2023</div>
       </div>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin:2.5rem 0 1rem;">PCC Antitrust Analysis — Deep Dive</h3>
+    <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin: 2.5rem 0 1rem;">Deep Dive: The PCC Antitrust Analysis</h3>
+
+    <div class="narrative">
+      The PCC's review is particularly instructive for M&amp;A students. The Commission had to define the relevant product markets (loans, deposits, credit cards), determine geographic scope (national vs. regional), calculate pre- and post-merger market shares, and assess whether the transaction would result in a Substantial Lessening of Competition (SLC) — the legal standard under Philippine competition law. The fact that BPI would remain the <em>third-largest</em> bank post-merger — not first or second — was central to the unconditional clearance.
+    </div>
+
     <div class="two-col">
       <div>
-        <div class="callout green-border">
+        <div class="callout callout-green">
           <strong>Commission Decision No. 02-M-001/2023 — Unconditional Clearance</strong><br/>
-          The PCC issued its final decision on <strong>September 13, 2023</strong>, clearing the merger without imposing any behavioral or structural remedies.
+          Issued September 13, 2023. The PCC found that the combined entity's market shares in loans, deposits, and credit cards were insufficient to substantially lessen competition. No conditions, no divestitures, no behavioral remedies were required.
         </div>
-        <h4 style="font-weight:700; margin:1rem 0 .5rem; font-size:.95rem;">Why Was the Merger Approved?</h4>
+        <h4 style="font-weight:700; margin:1.25rem 0 .5rem; font-size:.95rem;">Why Was the PCC Comfortable?</h4>
         <ul class="styled-list">
-          <li>The combined entity would remain the <strong>3rd largest bank</strong> by assets — not 1st or 2nd — meaning BDO Unibank and Metrobank remained larger competitors.</li>
-          <li>Post-transaction market share in <strong>loans, deposits, and credit cards</strong> was insufficient to substantially lessen competition in any defined market.</li>
-          <li>Philippine banking is competitive with many licensed universal banks, commercial banks, and thrift banks — the HHI (Herfindahl-Hirschman Index) increase was manageable.</li>
-          <li>The GoTyme stake acquisition was separately analyzed and found to pose no material competition concern.</li>
+          <li>Combined bank remains <strong>3rd largest by assets and deposits</strong> — BDO and Metrobank stay above it, maintaining competition at the top.</li>
+          <li>Post-merger HHI (Herfindahl-Hirschman Index) increase in each product market was below the SLC threshold under PCC guidelines.</li>
+          <li>Philippine banking has numerous other licensed universal banks, commercial banks, thrift banks, and digital banks providing competitive pressure.</li>
+          <li>The GoTyme Bank stake was reviewed separately and found to pose no competitive concern in the broader financial services market.</li>
+          <li>Transaction was mandatory to notify — both deal value and Philippine asset/revenue sizes exceeded PCC compulsory notification thresholds under RA 10667.</li>
         </ul>
       </div>
       <div>
-        <h4 style="font-weight:700; margin:0 0 .5rem; font-size:.95rem;">Relevant Regulatory Laws</h4>
-        <div class="table-wrap">
+        <h4 style="font-weight:700; margin:0 0 1rem; font-size:.95rem;">Governing Laws — The Regulatory Framework</h4>
+        <div class="table-wrap" style="margin:0;">
           <table>
-            <thead><tr><th>Law</th><th>Relevance</th></tr></thead>
+            <thead><tr><th>Law / Regulation</th><th>Role in the Merger</th></tr></thead>
             <tbody>
-              <tr><td>RA 8791 (General Banking Law of 2000)</td><td>Governs bank mergers; BSP must approve all bank M&amp;A</td></tr>
-              <tr><td>RA 11232 (Revised Corporation Code)</td><td>Corporate law for merger plans, shareholder votes, surviving entity</td></tr>
-              <tr><td>RA 10667 (Philippine Competition Act)</td><td>Mandatory PCC notification; antitrust assessment</td></tr>
-              <tr><td>RA 3591 (PDIC Charter)</td><td>Deposit insurance continuity obligations</td></tr>
-              <tr><td>BSP Circular 1074</td><td>BSP's enhanced guidelines on bank mergers and acquisitions</td></tr>
+              <tr><td>RA 8791 — General Banking Law of 2000</td><td>Governs all bank mergers; BSP approval mandatory</td></tr>
+              <tr><td>RA 11232 — Revised Corporation Code</td><td>Merger plan requirements, shareholder votes, surviving entity rules</td></tr>
+              <tr><td>RA 10667 — Philippine Competition Act</td><td>Mandatory PCC notification; antitrust standard</td></tr>
+              <tr><td>RA 3591 — PDIC Charter</td><td>Deposit insurance continuity obligations</td></tr>
+              <tr><td>BSP Circular 1074</td><td>BSP's enhanced guidelines on bank M&amp;A</td></tr>
+              <tr><td>SRC — Securities Regulation Code</td><td>PSE disclosure obligations triggered by merger announcement</td></tr>
             </tbody>
           </table>
         </div>
-        <h4 style="font-weight:700; margin:1rem 0 .5rem; font-size:.95rem;">BSP Regulatory Criteria (RA 8791)</h4>
+
+        <h4 style="font-weight:700; margin:1.25rem 0 .5rem; font-size:.95rem;">BSP's Key Assessment Criteria (RA 8791)</h4>
         <ul class="styled-list">
-          <li>Capital adequacy ratio (CAR) of combined entity must exceed BSP minimum</li>
-          <li>Fit-and-proper assessment of key officers and directors</li>
-          <li>Assessment of DOSRI (Directors, Officers, Stockholders, Related Interests) lending compliance</li>
-          <li>Reserve requirement and liquidity compliance</li>
-          <li>Depositor protection and continuity of banking services</li>
+          <li>Capital Adequacy Ratio (CAR) of combined entity vs. BSP minimum</li>
+          <li>Fit-and-proper assessment of all key officers</li>
+          <li>DOSRI lending limit compliance</li>
+          <li>Liquidity Coverage Ratio and reserve requirements</li>
+          <li>Depositor protection and continuity of services</li>
           <li>Systemic importance and financial stability implications</li>
         </ul>
       </div>
     </div>
 
-    <h3 style="font-size:1.05rem; font-weight:800; color:var(--navy); margin:2.5rem 0 1rem;">Corporate Governance Timeline — Shareholder Approvals</h3>
+    <h3 style="font-size:1.05rem; font-weight:800; color:var(--dark); margin: 2.5rem 0 1rem;">Corporate Governance — The Shareholder Approval Trail</h3>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Date</th><th>Action</th><th>Significance</th></tr></thead>
+        <thead><tr><th>Date</th><th>Corporate Action</th><th>Legal Significance</th></tr></thead>
         <tbody>
-          <tr><td>Sep 30, 2022</td><td>BPI &amp; RBC Boards approve Merger Plan</td><td>Board-level corporate governance step; triggers public disclosure obligations</td></tr>
-          <tr><td>Nov 7, 2023</td><td>RBC Board ratifies Supplemental Merger Plan</td><td>Updated terms ratified after supplemental plan executed Oct 20, 2023</td></tr>
-          <tr><td>Nov 15, 2023</td><td>BPI Board ratifies Supplemental Merger Plan</td><td>BPI's updated board approval for revised terms</td></tr>
-          <tr><td>Jan 17, 2023</td><td>BPI &amp; RBC Special Stockholders Meetings</td><td>Required under Revised Corporation Code — majority shareholder vote for merger approval</td></tr>
-          <tr><td>Dec 29, 2023</td><td>SEC approves merger &amp; capital increase</td><td>Final corporate law hurdle; SEC certificates issued</td></tr>
-          <tr><td>Jan 1, 2024</td><td>Merger effective by law</td><td>"First day of calendar quarter after all approvals received" — per RA 11232</td></tr>
+          <tr><td>Sep 30, 2022</td><td>BPI, RBC, RRHI &amp; JGSCSC Boards approve Merger Plan</td><td>Triggers PSE and SEC mandatory disclosure; signals binding intent</td></tr>
+          <tr><td>Jan 17, 2023</td><td>BPI &amp; RBC Special Stockholders Meetings</td><td>Required under RA 11232 — majority shareholder vote for merger approval</td></tr>
+          <tr><td>Oct 20, 2023</td><td>Supplemental Merger Plan executed</td><td>Updates and finalizes deal terms before regulatory closing</td></tr>
+          <tr><td>Nov 7, 2023</td><td>RBC Board ratifies Supplemental Plan</td><td>Formal board endorsement of updated terms</td></tr>
+          <tr><td>Nov 15, 2023</td><td>BPI Board ratifies Supplemental Plan</td><td>BPI's updated board authorization for revised terms</td></tr>
+          <tr><td>Dec 29, 2023</td><td>SEC approves merger, capital increase &amp; share issuance</td><td>Final corporate law requirement — SEC certificates issued</td></tr>
+          <tr><td>Jan 1, 2024</td><td>Merger effective — RBC absorbed by BPI</td><td>"First day of calendar quarter after all approvals received" per RA 11232</td></tr>
         </tbody>
       </table>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
-     MBA INSIGHTS
+     MBA TAKEAWAYS — Fixed: uses div, not section
 ═══════════════════════════════════════════════════ -->
-<section class="insights" id="insights">
+<div class="insights-section" id="insights">
   <div class="insights-inner">
-    <h2>🎓 Key MBA Takeaways</h2>
+    <div class="insights-title">🎓 Key MBA <span>Takeaways</span></div>
+    <p class="insights-subtitle">Six high-level synthesis points for classroom discussion — drawing strategic and managerial lessons from the BPI–Robinsons Bank case study.</p>
     <div class="insight-cards">
       <div class="insight-card">
-        <div class="num">01</div>
-        <h4>Stock Swap as a Strategic Tool</h4>
-        <p>A pure share-for-asset deal transforms the seller into a long-term strategic partner rather than a cash-exit counterparty. The Gokongweis' ~9% stake in BPI creates durable alignment between the two conglomerates.</p>
+        <div class="insight-num">01</div>
+        <h4>Stock Swaps Create Alignment, Not Just Deals</h4>
+        <p>A pure share-for-asset swap is not just a financing technique — it is a strategic design choice. By receiving BPI shares instead of cash, the Gokongwei Group became a long-term partner with incentives to see BPI succeed. This is fundamentally different from a cash exit where the seller walks away. The best M&amp;A deals create aligned ownership, not just satisfied sellers.</p>
       </div>
       <div class="insight-card">
-        <div class="num">02</div>
-        <h4>Multi-Regulator Complexity in Financial M&amp;A</h4>
-        <p>Four separate regulatory approvals — PCC, BSP, PDIC, SEC — each with different timelines and criteria. Managing parallel regulatory tracks without any single approval derailing the deal is a critical execution skill.</p>
+        <div class="insight-num">02</div>
+        <h4>Managing Multi-Regulator Complexity Is a Core M&amp;A Skill</h4>
+        <p>Four regulators (PCC, BSP, PDIC, SEC), each with different mandates, timelines, and information requirements — all had to say "yes" before the deal could close. Missing a filing, misunderstanding a threshold, or failing to anticipate a regulator's concern can collapse a deal or extend its timeline by months. Legal and regulatory strategy is not just compliance — it is a source of competitive advantage in deal execution.</p>
       </div>
       <div class="insight-card">
-        <div class="num">03</div>
-        <h4>Ecosystem M&amp;A vs. Pure Financial M&amp;A</h4>
-        <p>BPI's deal thesis went beyond RBC's standalone financials — it was also acquiring access to the Gokongwei commercial empire. This is "ecosystem M&amp;A" — buying a network of relationships, not just a balance sheet.</p>
+        <div class="insight-num">03</div>
+        <h4>Ecosystem M&amp;A Extends Value Beyond the Balance Sheet</h4>
+        <p>BPI did not acquire just 189 branches and PHP 175 billion in assets. It acquired a relationship with the Gokongwei Group — one of the Philippines' largest conglomerates — and embedded itself inside Robinsons Mall locations across the country. This is "ecosystem M&amp;A": acquiring relationships, distribution, and network access that no financial statement can fully capture. Understanding this dimension of deal value is essential for holistic M&amp;A analysis.</p>
       </div>
       <div class="insight-card">
-        <div class="num">04</div>
-        <h4>Post-Merger Divestment as Part of Integration</h4>
-        <p>The GoTyme stake divestment shows that integration is not always about adding — sometimes it's about shedding assets that create conflict. Recognizing and acting on this quickly is a mark of sophisticated integration management.</p>
+        <div class="insight-num">04</div>
+        <h4>Post-Merger Divestment Is a Sign of Strength, Not Failure</h4>
+        <p>The GoTyme divestment is one of the most instructive elements of this case. BPI inherited a digital bank stake, recognized it conflicted with its own strategy, and sold it quickly and cleanly. Many acquirers hold on to inherited assets too long out of inertia or sunk-cost fallacy. The ability to make clear-eyed post-merger divestment decisions — fast — is a hallmark of disciplined integration management.</p>
       </div>
       <div class="insight-card">
-        <div class="num">05</div>
-        <h4>Phased Integration Reduces Execution Risk</h4>
-        <p>A 2.5-year branch and IT integration timeline (Jan 2024 – May 2026) reduces the risk of customer attrition and system failures. "Big bang" integrations in banking often cause disruption and churn.</p>
+        <div class="insight-num">05</div>
+        <h4>Phased Integration Protects Customer Trust</h4>
+        <p>The 2.5-year phased branch integration (Jan 2024 – May 2026) was not a sign of slow execution — it was deliberate risk management. "Big bang" integrations in banking routinely cause customer attrition, system failures, and regulatory scrutiny. Protecting the customer experience during integration is as important as achieving financial synergies. Banks that rush integration often pay for it in deposit outflows that wipe out the projected savings.</p>
       </div>
       <div class="insight-card">
-        <div class="num">06</div>
-        <h4>CASA Ratio as a Competitive Moat</h4>
-        <p>RBC's 83% CASA ratio — higher than BPI's — is a genuine competitive moat. Banks with high CASA ratios fund themselves cheaply, protecting margins even in rising interest rate environments. This is a key valuation driver in bank M&amp;A.</p>
+        <div class="insight-num">06</div>
+        <h4>CASA Ratio Is a Competitive Moat — Price It Accordingly</h4>
+        <p>RBC's 83% CASA ratio — four points above BPI's own — deserved a premium in the deal valuation, and it received one. Banks with high CASA ratios fund themselves at near-zero cost, protecting margins even when interest rates rise. In Philippine banking, where deposit competition is fierce, a structurally high CASA ratio is a genuine competitive moat. M&amp;A analysts who overlook deposit quality in favor of loan growth metrics often miss this crucial value driver.</p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════
      GLOSSARY
 ═══════════════════════════════════════════════════ -->
-<section id="glossary">
+<div class="section-light" id="glossary">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-number">Reference</div>
       <h2>M&amp;A Key Terms Glossary</h2>
       <div class="divider"></div>
-      <p>Essential terminology for understanding mergers and acquisitions in the context of the BPI–Robinsons Bank deal.</p>
+      <p>Essential terminology for understanding mergers and acquisitions — defined in the context of the BPI–Robinsons Bank transaction.</p>
     </div>
     <dl class="glossary-grid">
       <div class="glossary-item">
         <dt>Merger</dt>
-        <dd>Combination of two companies into a single surviving legal entity. In BPI–RBC: BPI is the surviving entity; RBC is absorbed and ceases to exist.</dd>
-      </div>
-      <div class="glossary-item">
-        <dt>Acquisition</dt>
-        <dd>One company purchases a controlling stake or all assets of another. Can be friendly (negotiated) or hostile (unsolicited). BPI–RBC was a negotiated friendly merger.</dd>
+        <dd>The combination of two companies into a single surviving legal entity. In BPI–RBC: BPI is the surviving entity; RBC is absorbed and its corporate charter cancelled on January 1, 2024.</dd>
       </div>
       <div class="glossary-item">
         <dt>Horizontal Merger</dt>
-        <dd>Merger between two companies in the same industry/market. BPI and RBC are both commercial banks in the Philippines — this is a classic horizontal merger.</dd>
+        <dd>A merger between two companies in the same industry at the same level of the value chain. BPI and RBC are both Philippine commercial banks — a classic horizontal combination that regulators scrutinize for anticompetitive effects.</dd>
       </div>
       <div class="glossary-item">
-        <dt>Stock Swap</dt>
-        <dd>Deal structure where the acquirer issues its own shares as consideration instead of cash. BPI issued ~314M new shares to RBC shareholders in lieu of any cash payment.</dd>
+        <dt>Stock Swap (Share Exchange)</dt>
+        <dd>A deal structure where the acquirer issues its own shares as consideration instead of cash. BPI issued ~314M new shares to RBC's shareholders — no cash was paid. Selling shareholders become shareholders of the acquiring company.</dd>
       </div>
       <div class="glossary-item">
         <dt>Price-to-Book (P/B) Ratio</dt>
-        <dd>Deal value divided by the target's net book equity. BPI paid ~1.6x book for RBC, reflecting a growth premium above net asset value.</dd>
+        <dd>Total deal value divided by the target's net book equity. The primary valuation multiple for banks. BPI paid ~1.6x book for RBC, reflecting a premium for growth potential and strategic assets above net asset value.</dd>
       </div>
       <div class="glossary-item">
         <dt>CASA Ratio</dt>
-        <dd>Current Account &amp; Savings Account deposits as a % of total deposits. Higher CASA = lower funding cost. RBC's 83% CASA was a key quality indicator.</dd>
+        <dd>Current Account &amp; Savings Account deposits as a percentage of total deposits. Higher CASA = lower funding cost. RBC's 83% CASA ratio was a key quality metric and valuation premium driver.</dd>
       </div>
       <div class="glossary-item">
         <dt>Due Diligence</dt>
-        <dd>Pre-deal investigation by the acquirer to validate financial, legal, operational, and strategic information about the target. The foundation for pricing and deal terms.</dd>
+        <dd>The structured pre-deal investigation of the target company by the acquirer, covering financial, legal, operational, and strategic dimensions. The foundation for deal pricing, risk identification, and integration planning.</dd>
       </div>
       <div class="glossary-item">
         <dt>Synergies</dt>
-        <dd>Value created by combining two companies that could not be created independently. Includes revenue synergies (cross-selling) and cost synergies (shared infrastructure).</dd>
+        <dd>Value created by combining two companies that could not be generated by either alone. Includes revenue synergies (cross-selling, market share gains) and cost synergies (shared infrastructure, branch rationalization).</dd>
       </div>
       <div class="glossary-item">
         <dt>Post-Merger Integration (PMI)</dt>
-        <dd>The operational process of combining two organizations after a deal closes. Covers IT, branding, HR, customers, and culture. Often the hardest part of any deal.</dd>
+        <dd>The operational, cultural, and technological process of combining two organizations after closing. BPI's PMI covers IT migration, branch rebranding, customer account transfer, and product harmonization over 2024–2026.</dd>
       </div>
       <div class="glossary-item">
         <dt>NPL Coverage Ratio</dt>
-        <dd>Loan loss provisions divided by non-performing loans. Combined BPI–RBC coverage exceeded 160% — indicating strong buffer against potential credit losses.</dd>
+        <dd>Loan loss provisions divided by non-performing loans, expressed as a percentage. The combined BPI–RBC NPL coverage ratio remained above 160% — indicating robust protection against potential credit losses.</dd>
       </div>
       <div class="glossary-item">
         <dt>Capital Adequacy Ratio (CAR)</dt>
-        <dd>Bank's capital as a percentage of risk-weighted assets. A key BSP prudential metric — banks must maintain CAR above BSP's minimum requirement to operate.</dd>
+        <dd>A bank's regulatory capital as a percentage of its risk-weighted assets. BSP mandates minimum CAR levels for Philippine banks. The combined bank's CAR was a central criterion in the BSP's merger approval process.</dd>
       </div>
       <div class="glossary-item">
         <dt>HHI (Herfindahl-Hirschman Index)</dt>
-        <dd>A measure of market concentration used by competition regulators like the PCC. Higher HHI = more concentrated market. PCC found the post-merger HHI increase to be within acceptable bounds.</dd>
+        <dd>A measure of market concentration used by competition regulators. Calculated as the sum of squared market shares. The PCC found the post-merger HHI increase insufficient to constitute a substantial lessening of competition.</dd>
       </div>
       <div class="glossary-item">
         <dt>Surviving Entity</dt>
-        <dd>The legal entity that continues to exist after a merger. BPI is the surviving entity; RBC's corporate charter was cancelled upon merger effectivity on January 1, 2024.</dd>
+        <dd>The legal entity that continues to exist after a merger absorbs the other. BPI is the surviving entity. RBC's corporate registration with the SEC was cancelled when the merger took effect on January 1, 2024.</dd>
       </div>
       <div class="glossary-item">
         <dt>Merger Plan</dt>
-        <dd>The formal legal document governing the merger — specifying terms, conditions, share exchange ratios, effective date, and governance. Required under the Revised Corporation Code (RA 11232).</dd>
+        <dd>The formal legal contract governing a Philippine merger — specifying deal terms, share exchange ratios, conditions to closing, and the merger's effectivity date. Required under the Revised Corporation Code (RA 11232).</dd>
       </div>
       <div class="glossary-item">
         <dt>DOSRI</dt>
-        <dd>Directors, Officers, Stockholders, and Related Interests — BSP-regulated lending limits to connected parties. A key compliance area reviewed during BSP approval of the merger.</dd>
+        <dd>Directors, Officers, Stockholders, and Related Interests. BSP regulations limit how much a bank can lend to these connected parties to prevent conflicts of interest. Compliance with DOSRI rules was reviewed as part of BSP's merger approval.</dd>
       </div>
       <div class="glossary-item">
         <dt>Digital Bank</dt>
-        <dd>A BSP-licensed bank that operates primarily through digital channels with no or minimal physical branches. GoTyme Bank (20% owned by RBC pre-merger) was one of only six BSP-licensed digital banks in the Philippines.</dd>
+        <dd>A bank licensed by the BSP to operate primarily through digital channels. The Philippines has only six such licenses. GoTyme Bank (20% owned by RBC pre-merger) was one — making the stake a scarce and valuable strategic asset.</dd>
+      </div>
+      <div class="glossary-item">
+        <dt>Ecosystem M&amp;A</dt>
+        <dd>An M&amp;A strategy where the acquirer values a target not only for its standalone financials but for the commercial relationships, distribution networks, and conglomerate affiliations it brings — as in BPI acquiring access to the Gokongwei business universe through the RBC deal.</dd>
       </div>
     </dl>
   </div>
-</section>
+</div>
+
+<!-- ── Sources ── -->
+<div class="sources-section">
+  <div class="sources-inner">
+    <h3>Key Sources &amp; References</h3>
+    <ul class="source-list">
+      <li>BPI Official Merger Page (bpi.com.ph)</li>
+      <li>PCC Decision No. 02-M-001/2023</li>
+      <li>BSP Monetary Board Resolution 1633 (Dec 2023)</li>
+      <li>JG Summit Holdings Investor Disclosures</li>
+      <li>RRHI PSE Disclosures</li>
+      <li>Philippine Stock Exchange Disclosures</li>
+      <li>Inquirer Business</li>
+      <li>Rappler Finance</li>
+      <li>Philippine Star Business</li>
+      <li>GMA News Online</li>
+      <li>Fintech News Philippines</li>
+      <li>The Asian Banker</li>
+      <li>RA 8791 — General Banking Law of 2000</li>
+      <li>RA 10667 — Philippine Competition Act</li>
+      <li>RA 11232 — Revised Corporation Code</li>
+    </ul>
+  </div>
+</div>
 
 <!-- ── Footer ── -->
 <footer>
-  <p><strong>BPI–Robinsons Bank Merger | M&amp;A Case Study</strong></p>
-  <p style="margin-top:.5rem;">Prepared for MBA Class Discussion — Module D: Mergers and Acquisitions</p>
-  <p style="margin-top:.5rem; opacity:.5;">Sources: BPI official disclosures, Philippine Competition Commission Decision No. 02-M-001/2023, BSP Monetary Board Resolution 1633, SEC filings, JG Summit Holdings announcements, Philippine Stock Exchange disclosures, Inquirer Business, Rappler, Philippine Star, GMA News, Fintech News Philippines. All financial data as of dates cited. For academic use only.</p>
+  <p><strong>BPI–Robinsons Bank Merger | Mergers &amp; Acquisitions Case Study</strong></p>
+  <p>Prepared for MBA Class Discussion — Module D: Mergers and Acquisitions | Philippine Banking Industry</p>
+  <p style="margin-top:.75rem; opacity:.5; font-size:.75rem;">All financial data as of dates cited in the text. For academic and educational use only. Sources include official regulatory filings, PSE disclosures, and publicly available news reporting.</p>
 </footer>
 
 </body>
