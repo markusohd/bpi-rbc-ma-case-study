@@ -695,16 +695,185 @@
     footer strong { color: var(--white); font-size: .95rem; }
     footer p + p { margin-top: .4rem; }
 
-    /* ─── Responsive ─────────────────────────────────────────────── */
+    /* ─── Hamburger Button ──────────────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .4rem;
+      border-radius: 6px;
+      transition: background .2s;
+    }
+    .hamburger:hover { background: var(--bpi-red-soft); }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--bpi-red);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26,26,46,.55);
+      z-index: 200;
+      backdrop-filter: blur(3px);
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav-inner {
+      position: absolute;
+      top: 0; right: 0;
+      width: min(320px, 85vw);
+      height: 100%;
+      background: var(--white);
+      box-shadow: -8px 0 32px rgba(0,0,0,.15);
+      overflow-y: auto;
+      padding: 1.5rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--bpi-red);
+    }
+    .mobile-nav-header span {
+      font-size: .95rem;
+      font-weight: 800;
+      color: var(--bpi-red);
+    }
+    .mobile-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .mobile-nav-links a {
+      display: block;
+      padding: .85rem 1rem;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 8px;
+      border-bottom: 1px solid var(--border);
+      transition: background .15s, color .15s;
+    }
+    .mobile-nav-links a:hover { background: var(--bpi-red-soft); color: var(--bpi-red); }
+
+    /* ─── Responsive — Tablet (≤ 900px) ─────────────────────────── */
     @media (max-width: 900px) {
       .stats-inner { grid-template-columns: repeat(3, 1fr); }
       .stat-item:nth-child(3) { border-right: none; }
+      .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+      .section-light, .section-white { padding: 3.5rem 1.5rem; }
+      .insights-section { padding: 3.5rem 1.5rem; }
+      .sources-section { padding: 2rem 1.5rem; }
+      .banks-grid { grid-template-columns: 1fr; }
     }
-    @media (max-width: 600px) {
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+
+    /* ─── Responsive — Mobile (≤ 640px) ─────────────────────────── */
+    @media (max-width: 640px) {
+      /* Nav */
       nav .nav-links { display: none; }
-      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .hamburger { display: flex; }
+      .topbar { font-size: .65rem; padding: .4rem 1rem; flex-direction: column; gap: .15rem; text-align: center; }
+
+      /* Hero */
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero-sub { font-size: .95rem; }
+      .hero-badges { gap: .5rem; }
+      .badge { font-size: .75rem; padding: .3rem .75rem; }
+
+      /* Stats */
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem .75rem; }
+      .stat-value { font-size: 1.25rem; }
+      .stat-label { font-size: .65rem; }
+
+      /* Sections */
+      .section-light, .section-white { padding: 2.75rem 1.1rem; }
+      .insights-section { padding: 2.75rem 1.1rem; }
+      .sources-section { padding: 1.75rem 1.1rem; }
+      .intro-section { padding: 2.75rem 1.1rem; }
+
+      /* Section headers */
+      .section-header { margin-bottom: 2rem; }
+      .section-header h2 { font-size: 1.45rem; }
+      .section-header p { font-size: .92rem; }
+
+      /* Cards */
+      .cards-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .info-card { padding: 1.35rem; }
+      .pillar-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .pillar { padding: 1.25rem 1rem; }
+      .pillar .p-icon { font-size: 1.6rem; }
+      .reg-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .glossary-grid { grid-template-columns: 1fr; }
+      .insight-cards { grid-template-columns: 1fr; }
+      .industry-context { grid-template-columns: 1fr; }
+
+      /* Banks */
+      .bank-card-header { padding: 1.25rem; }
+      .bank-card-body { padding: 1rem 1.25rem; }
+
+      /* Tables */
+      table { font-size: .8rem; }
+      thead th, tbody td { padding: .65rem .75rem; }
+
+      /* Timeline */
+      .timeline { padding-left: 2rem; }
+      .tl-dot { left: -1.65rem; }
+
+      /* Quote */
+      .quote-block { padding: 1.5rem 1.25rem; }
+      .quote-block::before { font-size: 3.5rem; top: 1rem; left: 1rem; }
+      .quote-block blockquote, .quote-block cite { padding-left: 1.75rem; font-size: .92rem; }
+
+      /* Narrative / Callout */
+      .narrative { padding: 1.1rem 1.25rem; font-size: .9rem; }
+      .callout { padding: 1.1rem 1.25rem; font-size: .88rem; }
+
+      /* Insights */
+      .insights-title { font-size: 1.45rem; }
+      .insight-card { padding: 1.35rem; }
+      .insight-num { font-size: 2rem; }
+
+      /* Footer */
+      footer { padding: 2rem 1.1rem; font-size: .78rem; }
+    }
+
+    /* ─── Responsive — Small Mobile (≤ 400px) ───────────────────── */
+    @media (max-width: 400px) {
+      .pillar-grid { grid-template-columns: 1fr; }
+      .reg-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.5rem; }
+      .stat-value { font-size: 1.1rem; }
+    }
+
+    /* ─── Print ──────────────────────────────────────────────────── */
+    @media print {
+      .topbar, nav, .hamburger, .mobile-nav { display: none !important; }
+      .section-light, .section-white { padding: 1.5rem 0; }
+      .bank-card:hover, .info-card:hover, .stat-item:hover,
+      .pillar:hover, .reg-card:hover { transform: none !important; box-shadow: none !important; }
     }
   </style>
 </head>
@@ -731,8 +900,32 @@
       <li><a href="#insights">MBA Takeaways</a></li>
       <li><a href="#glossary">Glossary</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ── Mobile Navigation Drawer ── -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-inner">
+    <div class="mobile-nav-header">
+      <span>BPI–RBC Case Study</span>
+      <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-nav-links">
+      <a href="#overview">The Two Banks</a>
+      <a href="#motives">M&amp;A Motives</a>
+      <a href="#valuation">Valuation</a>
+      <a href="#deal">Deal Structure</a>
+      <a href="#diligence">Due Diligence</a>
+      <a href="#integration">Post-Merger Integration</a>
+      <a href="#legal">Legal &amp; Regulatory</a>
+      <a href="#insights">MBA Takeaways</a>
+      <a href="#glossary">Glossary</a>
+    </nav>
+  </div>
+</div>
 
 <!-- ── Hero ── -->
 <header class="hero" id="hero">
@@ -1582,5 +1775,59 @@
   <p style="margin-top:.75rem; opacity:.5; font-size:.75rem;">All financial data as of dates cited in the text. For academic and educational use only. Sources include official regulatory filings, PSE disclosures, and publicly available news reporting.</p>
 </footer>
 
+<script>
+  // ── Hamburger / Mobile Nav ──────────────────────────────────
+  const hamburger  = document.getElementById('hamburger');
+  const mobileNav  = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+  function openMenu() {
+    mobileNav.classList.add('open');
+    hamburger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobileNav.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openMenu);
+  mobileClose.addEventListener('click', closeMenu);
+  mobileNav.addEventListener('click', function(e) {
+    if (e.target === mobileNav) closeMenu();
+  });
+  mobileLinks.forEach(function(link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // ── Active nav highlight on scroll ─────────────────────────
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function(link) {
+          link.style.color = '';
+          link.style.background = '';
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.style.color = 'var(--bpi-red)';
+            link.style.background = 'var(--bpi-red-soft)';
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(function(s) { observer.observe(s); });
+
+  // ── Smooth back-to-top on brand click ──────────────────────
+  document.querySelector('.nav-brand').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 </body>
 </html>
